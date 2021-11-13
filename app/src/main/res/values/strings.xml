@@ -1,0 +1,41 @@
+<resources>
+
+    <string name="app_name">MaReu_Application</string>
+    <string name="settings">settings</string>
+
+    <!-- filtres -->
+    <string name="Filtre_par_date">Filtre par date</string>
+    <string name="Filtre_par_salle">Filtre par salle</string>
+    <string name="no_filter">Aucun Filtre</string>
+    <string name="Aucune_Réunion">Pas de réunion programmée</string>
+
+    <!-- salles -->
+    <string name="Salle_Mexico">Salle Mexico</string>
+    <string name="Salle_Venise">Salle Venise</string>
+    <string name="Salle_Berlin">Salle Berlin</string>
+    <string name="Salle_Paris">Salle Paris</string>
+    <string name="Salle_Rio">Salle Rio</string>
+    <string name="Salle_Moscou">Salle Moscou</string>
+    <string name="Salle_Dubai">Salle Dubai</string>
+    <string name="Salle_Madrid">Salle Madrid</string>
+    <string name="Salle_Quebec">Salle Quebec</string>
+    <string name="Salle_New_York">Salle New_York</string>
+    <string name="ajout_reunion">ajout_reunion</string>
+    <string name="ajout">Ajout</string>
+    <string name="mails">Mails</string>
+    <string name="heure_r_union">Heure réunion</string>
+    <string name="date_r_union">Date réunion</string>
+    <string name="salle_de_r_union">Salle de réunion</string>
+    <string name="sujet_de_la_r_union">Sujet de la réunion</string>
+    <string name="planifions_notre_r_union_chez_lamzone">Planifions notre réunion chez Lamzone</string>
+    <string name="myreu">MyReu</string>
+    <string name="menu">menu</string>
+    <string name="bydate">bydate</string>
+    <string name="bymeetingroom">bymeetingroom</string>
+    <string name="resetlist">resetlist</string>
+    <string name="deletebutton">deletebutton</string>
+    <string name="circle">circle</string>
+    <string name="addmeeting">addmeeting</string>
+    <string name="ma_liste_de_r_unions">Ma liste de réunions</string>
+
+</resources>
