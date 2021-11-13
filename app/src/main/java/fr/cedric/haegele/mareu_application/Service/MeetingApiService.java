@@ -1,7 +1,5 @@
 package fr.cedric.haegele.mareu_application.Service;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import fr.cedric.haegele.mareu_application.model.Meeting;

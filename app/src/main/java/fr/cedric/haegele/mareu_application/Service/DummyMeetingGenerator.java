@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import fr.cedric.haegele.mareu_application.R;
-import fr.cedric.haegele.mareu_application.model.Meeting;
 import fr.cedric.haegele.mareu_application.model.Rooms;
 
 public class DummyMeetingGenerator {

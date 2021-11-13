@@ -37,5 +37,6 @@
     <string name="circle">circle</string>
     <string name="addmeeting">addmeeting</string>
     <string name="ma_liste_de_r_unions">Ma liste de réunions</string>
+    <string name="mails_des_participants">Mails des participants</string>
 
 </resources>
