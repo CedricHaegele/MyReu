@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -38,13 +39,15 @@ public class ActivityAddMeetings extends AppCompatActivity {
    MeetingApiService meetingApiService;
    DatePickerDialog.OnDateSetListener onDateSetListener;
    private ArrayList<String> mails = new ArrayList<>();
-   ImageView drawable;
+   String[] Rooms;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_meeting);
-
 
 
         meetingTopic=findViewById(R.id.meeting_topic);
@@ -64,16 +67,53 @@ public class ActivityAddMeetings extends AppCompatActivity {
 
 
         //value to be shown in the spinner
-        String []rooms ={"New York","Berlin","Yaoundé","Paris","Rome","Madrid","Rio","Vienne","Quebec","Dublin"};
+        String str []={"New York","Berlin","Yaoundé","Paris","Rome","Madrid","Rio","Vienne","Quebec","Dublin"};
 
         //array adapter used to bind values in the spinner
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item,rooms);
-
+        ArrayAdapter adapter = new ArrayAdapter (this, android.R.layout.simple_spinner_dropdown_item,str);
         meetingRoom.setAdapter(adapter);
 
+        //select Room and the image change
+        meetingRoom.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (str[0].equals(meetingRoom.getOnItemClickListener().toString()))
+                {
+                    imageTop.setImageResource(R.drawable.image);}
+                else if(str[1].equals(meetingRoom.getOnItemSelectedListener().toString()))
+                {
+                    imageTop.setImageResource(R.drawable.image1);}
+                else if(str[2].equals(meetingRoom.getOnItemClickListener().toString()))
+                {
+                    imageTop.setImageResource(R.drawable.image2);
+                }else if(str[3].equals(meetingRoom.getOnItemSelectedListener().toString()))
+                {
+                    imageTop.setImageResource(R.drawable.image3);
+                }else if(str[4].equals(meetingRoom.getOnItemClickListener().toString()))
+                {
+                    imageTop.setImageResource(R.drawable.image4);
+                }else if(str[5].equals(meetingRoom.getOnItemSelectedListener().toString()))
+                {
+                    imageTop.setImageResource(R.drawable.image5);
+                }else if(str[6].equals(meetingRoom.getOnItemSelectedListener().toString()))
+                {
+                    imageTop.setImageResource(R.drawable.image7);
+                }else if(str[7].equals(meetingRoom.getOnItemSelectedListener().toString()))
+                {
+                    imageTop.setImageResource(R.drawable.image8);
+                }else if(str[8].equals(meetingRoom.getOnItemSelectedListener().toString()))
+                {
+                    imageTop.setImageResource(R.drawable.image9);
+                }else if(str[9].equals(meetingRoom.getOnItemSelectedListener().toString()))
+                {
+                    imageTop.setImageResource(R.drawable.image10);}}
 
 
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
 
+            }
+        });
 
         meetingHour.setOnClickListener(new View.OnClickListener() {
             @Override

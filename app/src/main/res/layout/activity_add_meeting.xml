@@ -101,13 +101,12 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-
                 <AutoCompleteTextView
                     android:id="@+id/meeting_room"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@null"
-                    android:drawableStart="@drawable/ic_baseline_location_on_24"
+                    android:drawableStart="@drawable/circle"
                     android:drawablePadding="10dp"
                     android:hint="@string/salle_de_r_union"
                     android:inputType="none" />
