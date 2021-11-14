@@ -4,12 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -28,17 +31,21 @@ import fr.cedric.haegele.mareu_application.model.Rooms;
 
 public class ActivityAddMeetings extends AppCompatActivity {
    TextInputEditText meetingTopic,meetingDate,meetingHour,mailParticipant;
+   ImageView imageTop;
    AutoCompleteTextView meetingRoom;
    ChipGroup chipGroup;
    Button btnAddMail, btnAddMeeting;
    MeetingApiService meetingApiService;
    DatePickerDialog.OnDateSetListener onDateSetListener;
    private ArrayList<String> mails = new ArrayList<>();
+   ImageView drawable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_meeting);
+
+
 
         meetingTopic=findViewById(R.id.meeting_topic);
         meetingDate=findViewById(R.id.meeting_date);
@@ -48,10 +55,24 @@ public class ActivityAddMeetings extends AppCompatActivity {
         chipGroup=findViewById(R.id.chip_group);
         btnAddMail=findViewById(R.id.btn_add_mail);
         btnAddMeeting=findViewById(R.id.btn_add_meeting);
+        imageTop=findViewById(R.id.imageTop);
+
 
         meetingApiService = DI.getMeetingApiService();
         getDate();
         setMailButton();
+
+
+        //value to be shown in the spinner
+        String []rooms ={"New York","Berlin","Yaoundé","Paris","Rome","Madrid","Rio","Vienne","Quebec","Dublin"};
+
+        //array adapter used to bind values in the spinner
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item,rooms);
+
+        meetingRoom.setAdapter(adapter);
+
+
+
 
 
         meetingHour.setOnClickListener(new View.OnClickListener() {
@@ -97,6 +118,7 @@ public class ActivityAddMeetings extends AppCompatActivity {
         };
     }
 
+
     private boolean mailIsOk(CharSequence mailParticipant) {
         return Patterns.EMAIL_ADDRESS.matcher(mailParticipant).matches();
     }
@@ -138,15 +160,7 @@ public class ActivityAddMeetings extends AppCompatActivity {
             }
         });
     }
-
-    public void setSpinner() {
-        ArrayAdapter<Rooms> adapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, meetingApiService.getRooms());
-        meetingRoom.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
             }
-    ;
-
-        }
 
 
 
