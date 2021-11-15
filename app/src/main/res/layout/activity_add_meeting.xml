@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/new_meeting_layout"
@@ -70,9 +69,9 @@
                 android:id="@+id/imageTop"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:scaleType="centerCrop"
                 android:layout_gravity="center"
-                android:src="@drawable/image"/>
+                android:scaleType="centerCrop"
+                android:src="@drawable/image" />
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -92,25 +91,28 @@
                     android:hint="@string/sujet_de_la_r_union" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
-                <AutoCompleteTextView
+                <TextView
+                    android:id="@+id/txtVw"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:text="Veuillez sélectionner une salle :"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+
+                <Spinner
                     android:id="@+id/meeting_room"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@null"
-                    android:drawableStart="@drawable/circle"
-                    android:drawablePadding="10dp"
-                    android:hint="@string/salle_de_r_union"
-                    android:inputType="none" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_toRightOf="@+id/txtVw"
+                    android:hint="@string/salle_de_r_union" />
+
+            </RelativeLayout>
 
 
             <LinearLayout
@@ -132,11 +134,10 @@
                         android:id="@+id/meeting_date"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:drawableStart="@drawable/ic_baseline_date_range_24"
                         android:drawablePadding="10dp"
                         android:focusable="false"
                         android:hint="@string/date_r_union"
-                        android:inputType="none" />
+                        android:inputType="datetime" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -155,12 +156,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
-                        android:drawableStart="@drawable/ic_baseline_schedule_24"
                         android:drawablePadding="10dp"
                         android:focusable="false"
-                        android:letterSpacing="5"
                         android:hint="@string/heure_r_union"
-                        android:inputType="none" />
+                        android:inputType="time"/>
+
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -173,19 +173,19 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_margin="8dp"
-                    app:cornerRadius="20dp"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="4">
+                    android:layout_margin="8dp"
+                    android:layout_weight="4"
+                    app:cornerRadius="20dp">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/mailParticipant"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingStart="10dp"
                         android:hint="@string/mails_des_participants"
-                        android:inputType="textEmailAddress" />
+                        android:inputType="textEmailAddress"
+                        android:paddingStart="10dp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -193,11 +193,12 @@
                     android:id="@+id/btn_add_mail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:cornerRadius="20dp"
                     android:layout_margin="8dp"
-                    android:text="@string/ajout"
                     android:backgroundTint="@color/blue"
-                    android:textSize="12sp">
+                    android:text="@string/ajout"
+                    android:textSize="12sp"
+                    app:cornerRadius="20dp">
+
                 </Button>
 
             </LinearLayout>
@@ -206,18 +207,19 @@
                 android:id="@+id/chip_group"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-            </com.google.android.material.chip.ChipGroup>
 
-            <com.google.android.material.chip.Chip
-                style="@style/Widget.MaterialComponents.Chip.Action"
-                android:id="@+id/chip"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:background="#F3EEEE"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/button_add" />
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip"
+                    style="@style/Widget.MaterialComponents.Chip.Action"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="#F3EEEE"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/button_add" />
+
+            </com.google.android.material.chip.ChipGroup>
 
         </LinearLayout>
 
@@ -229,9 +231,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginVertical="40dp"
-        app:cornerRadius="20dp"
         android:backgroundTint="@color/blue"
         android:text="@string/ajout_reunion"
+        app:cornerRadius="20dp"
         app:icon="@drawable/ic_baseline_add_black_24dp"
         app:layout_constraintBottom_toBottomOf="@+id/scrollView3"
         app:layout_constraintEnd_toEndOf="parent"

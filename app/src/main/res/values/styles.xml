@@ -24,6 +24,9 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-
+    <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorOnPrimary">#000000</item>
+        <item name="colorAccent">@color/blue</item>
+    </style>
 
 </resources>
