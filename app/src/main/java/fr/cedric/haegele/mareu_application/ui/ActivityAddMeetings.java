@@ -1,17 +1,19 @@
 package fr.cedric.haegele.mareu_application.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.FragmentActivity;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
-import android.graphics.drawable.Drawable;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -32,7 +34,6 @@ import java.util.Locale;
 import fr.cedric.haegele.mareu_application.DI.DI;
 import fr.cedric.haegele.mareu_application.R;
 import fr.cedric.haegele.mareu_application.Service.MeetingApiService;
-import fr.cedric.haegele.mareu_application.model.Rooms;
 
 public class ActivityAddMeetings extends AppCompatActivity {
     TextInputEditText meetingTopic, meetingDate, meetingHour, mailParticipant;
@@ -82,26 +83,24 @@ public class ActivityAddMeetings extends AppCompatActivity {
         meetingRoom.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (str[0].equals(meetingRoom.getItemAtPosition(position).toString())) {
+                if (str[1].equals(meetingRoom.getItemAtPosition(position).toString())) {
                     imageTop.setImageResource(R.drawable.image);
-                } else if (str[1].equals(meetingRoom.getItemAtPosition(position).toString())) {
-                    imageTop.setImageResource(R.drawable.image1);
                 } else if (str[2].equals(meetingRoom.getItemAtPosition(position).toString())) {
-                    imageTop.setImageResource(R.drawable.image2);
+                    imageTop.setImageResource(R.drawable.image1);
                 } else if (str[3].equals(meetingRoom.getItemAtPosition(position).toString())) {
-                    imageTop.setImageResource(R.drawable.image3);
+                    imageTop.setImageResource(R.drawable.image2);
                 } else if (str[4].equals(meetingRoom.getItemAtPosition(position).toString())) {
-                    imageTop.setImageResource(R.drawable.image4);
+                    imageTop.setImageResource(R.drawable.image3);
                 } else if (str[5].equals(meetingRoom.getItemAtPosition(position).toString())) {
-                    imageTop.setImageResource(R.drawable.image5);
+                    imageTop.setImageResource(R.drawable.image4);
                 } else if (str[7].equals(meetingRoom.getItemAtPosition(position).toString())) {
-                    imageTop.setImageResource(R.drawable.image7);
+                    imageTop.setImageResource(R.drawable.image5);
                 } else if (str[8].equals(meetingRoom.getItemAtPosition(position).toString())) {
-                    imageTop.setImageResource(R.drawable.image8);
+                    imageTop.setImageResource(R.drawable.image7);
                 } else if (str[9].equals(meetingRoom.getItemAtPosition(position).toString())) {
-                    imageTop.setImageResource(R.drawable.image9);
+                    imageTop.setImageResource(R.drawable.image8);
                 } else if (str[10].equals(meetingRoom.getItemAtPosition(position).toString())) {
-                    imageTop.setImageResource(R.drawable.image10);
+                    imageTop.setImageResource(R.drawable.image9);
                 }
             }
 
@@ -118,9 +117,8 @@ public class ActivityAddMeetings extends AppCompatActivity {
                 Calendar calendar = Calendar.getInstance();
                 int hour = calendar.get(Calendar.HOUR_OF_DAY);
                 int minute = calendar.get(Calendar.MINUTE);
-                int style = AlertDialog.BUTTON_POSITIVE ;
 
-                TimePickerDialog timePickerDialog = new TimePickerDialog(ActivityAddMeetings.this,style, new TimePickerDialog.OnTimeSetListener() {
+                TimePickerDialog timePickerDialog = new TimePickerDialog(ActivityAddMeetings.this,R.style.DialogTheme, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                         meetingHour.setText(hourOfDay + ":" + minute);
@@ -235,6 +233,8 @@ public class ActivityAddMeetings extends AppCompatActivity {
     }
 
 }
+
+
 
 
 

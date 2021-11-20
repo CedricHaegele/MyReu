@@ -36,7 +36,8 @@
                         android:layout_marginStart="3dp"
                         android:layout_marginTop="3dp"
                         android:src="@drawable/ic_baseline_emoji_people_24"
-                        app:layout_collapseMode="parallax" />
+                        app:layout_collapseMode="parallax"
+                        android:contentDescription="@string/todo" />
 
                     <com.google.android.material.appbar.MaterialToolbar
                         android:id="@+id/toolbar"
@@ -71,7 +72,8 @@
                 android:layout_height="100dp"
                 android:layout_gravity="center"
                 android:scaleType="centerCrop"
-                android:src="@drawable/image" />
+                android:src="@drawable/image"
+                android:contentDescription="@string/todo" />
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -100,8 +102,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
-                    android:text="Veuillez sélectionner une salle :"
-                    android:textSize="15dp"
+                    android:text="@string/veuillez_s_lectionner_une_salle"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
 
                 <Spinner
@@ -109,7 +111,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
-                    android:layout_toRightOf="@+id/txtVw"
+                    android:layout_toEndOf="@+id/txtVw"
                     android:hint="@string/salle_de_r_union" />
 
             </RelativeLayout>
@@ -159,7 +161,7 @@
                         android:drawablePadding="10dp"
                         android:focusable="false"
                         android:hint="@string/heure_r_union"
-                        android:inputType="time"/>
+                        android:inputType="time" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -185,7 +187,8 @@
                         android:layout_height="wrap_content"
                         android:hint="@string/mails_des_participants"
                         android:inputType="textEmailAddress"
-                        android:paddingStart="10dp" />
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -208,17 +211,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip"
-                    style="@style/Widget.MaterialComponents.Chip.Action"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:background="#F3EEEE"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/button_add" />
-
             </com.google.android.material.chip.ChipGroup>
 
         </LinearLayout>
@@ -230,7 +222,7 @@
         style="@style/Widget.MaterialComponents.Button.Icon"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="40dp"
+        android:layout_marginVertical="60dp"
         android:backgroundTint="@color/blue"
         android:text="@string/ajout_reunion"
         app:cornerRadius="20dp"

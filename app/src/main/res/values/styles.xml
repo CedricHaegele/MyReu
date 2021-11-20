@@ -14,6 +14,7 @@
     <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
         <item name="android:textSize">18sp</item>
 
+
     </style>
     <style name="AppTheme.ActionBar">
         <item name="windowActionBar">true</item>
@@ -28,5 +29,12 @@
         <item name="colorOnPrimary">#000000</item>
         <item name="colorAccent">@color/blue</item>
     </style>
+
+    <style name="AlertDialogStyle" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:colorAccent">@color/blue</item>
+        <item name="android:textColor">#f3f3f3</item>
+        <item name="android:textColorPrimary">#f3f3f3</item>
+    </style>
+
 
 </resources>
