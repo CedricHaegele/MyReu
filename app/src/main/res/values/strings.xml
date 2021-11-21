@@ -4,10 +4,10 @@
     <string name="settings">settings</string>
 
     <!-- filtres -->
-    <string name="Filtre_par_date">Filtre par date</string>
-    <string name="Filtre_par_salle">Filtre par salle</string>
-    <string name="no_filter">Aucun Filtre</string>
-    <string name="Aucune_Réunion">Pas de réunion programmée</string>
+    <string name="Filtrer_par_date">Filtrer par date</string>
+    <string name="Filtrer_par_salle">Filtrer par salle</string>
+    <string name="Réinitialiser">Réinitialiser</string>
+
 
     <!-- salles -->
     <string name="description">%1$s - %2$s - %3$s</string>

@@ -25,7 +25,7 @@
         android:id="@+id/date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
+        android:textSize="10sp"
         android:textStyle="bold"
         android:textColor="@color/white"
         android:textAllCaps="true"
@@ -44,7 +44,7 @@
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@id/photo"
         app:layout_constraintTop_toTopOf="@id/photo"
-        tools:text="Reunion A" />
+        tools:text="Reunion A  - " />
 
     <TextView
         android:id="@+id/room"
@@ -53,7 +53,7 @@
         android:layout_marginStart="10dp"
         app:layout_constraintStart_toEndOf="@id/title"
         app:layout_constraintTop_toTopOf="@id/title"
-        tools:text="Salle de reunion"
+        tools:text=" Salle de reunion"
         android:textStyle="italic"/>
 
 
@@ -70,8 +70,8 @@
 
     <ImageView
         android:id="@+id/delete"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:layout_margin="16dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"

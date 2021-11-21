@@ -84,7 +84,7 @@ public class ActivityAddMeetings extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (str[1].equals(meetingRoom.getItemAtPosition(position).toString())) {
-                    imageTop.setImageResource(R.drawable.image);
+                    imageTop.setImageResource(R.drawable.image10);
                 } else if (str[2].equals(meetingRoom.getItemAtPosition(position).toString())) {
                     imageTop.setImageResource(R.drawable.image1);
                 } else if (str[3].equals(meetingRoom.getItemAtPosition(position).toString())) {

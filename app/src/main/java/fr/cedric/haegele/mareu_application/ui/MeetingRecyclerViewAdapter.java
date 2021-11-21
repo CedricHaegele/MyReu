@@ -1,5 +1,6 @@
 package fr.cedric.haegele.mareu_application.ui;
 
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,16 +12,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import fr.cedric.haegele.mareu_application.R;
 import fr.cedric.haegele.mareu_application.model.Meeting;
 
 public class MeetingRecyclerViewAdapter extends RecyclerView.Adapter<MeetingRecyclerViewAdapter.ViewHolder> {
 
-    ArrayList<Meeting> mMeetings;
+    List<Meeting> mMeetings;
 
-    public MeetingRecyclerViewAdapter(ArrayList<Meeting>meetings) {
-        this.mMeetings=meetings;
+    public MeetingRecyclerViewAdapter(List<Meeting> meetings) {
+        this.mMeetings = meetings;
     }
 
     @NonNull
@@ -33,11 +35,10 @@ public class MeetingRecyclerViewAdapter extends RecyclerView.Adapter<MeetingRecy
     @Override
     public void onBindViewHolder(@NonNull MeetingRecyclerViewAdapter.ViewHolder holder, int position) {
 
-        Meeting meeting =mMeetings.get(position);
+        Meeting meeting = mMeetings.get(position);
         holder.displayMeeting(mMeetings.get(position));
 
     }
-
 
 
     @Override
@@ -45,13 +46,20 @@ public class MeetingRecyclerViewAdapter extends RecyclerView.Adapter<MeetingRecy
         return mMeetings.size();
     }
 
+    void update(List<Meeting> meetings) {
+        this.mMeetings = meetings;
+        notifyDataSetChanged();
+    }
+    public interface OnMeetingClickListener {
+        void onMeetingClicked(int position);
+    }
 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
 
         public ImageView photo;
-        public TextView title,room;
+        public TextView title, room;
         public TextClock date;
         public TextView mail;
         public ImageView delete;
@@ -69,11 +77,10 @@ public class MeetingRecyclerViewAdapter extends RecyclerView.Adapter<MeetingRecy
 
         }
 
-        public void displayMeeting(Meeting meeting){
+        public void displayMeeting(Meeting meeting) {
             photo.setColorFilter(meeting.getDrawable());
             title.setText(meeting.getTopicMeeting());
             mail.setText(meeting.getMails());
-            date.setFormat12Hour(meeting.getDateMeeting());
             room.setText(meeting.getRoomName());
 
         }
