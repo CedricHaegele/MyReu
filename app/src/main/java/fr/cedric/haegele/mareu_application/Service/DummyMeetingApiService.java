@@ -46,12 +46,7 @@ public class DummyMeetingApiService implements MeetingApiService {
         return null;
     }
 
-    @Override
-    public List<Meeting> filterByDate(Date filteredDate) {
-        return null;
-    }
-
-    @Override
+      @Override
     public List<Meeting> filterByRoom(String room) {
         return null;
     }

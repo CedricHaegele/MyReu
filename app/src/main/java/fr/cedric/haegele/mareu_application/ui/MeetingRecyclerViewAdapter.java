@@ -83,6 +83,12 @@ public class MeetingRecyclerViewAdapter extends RecyclerView.Adapter<MeetingRecy
             mail.setText(meeting.getMails());
             room.setText(meeting.getRoomName());
 
-        }
+        }}
+
+        /** Update mReunion **/
+        void setData(List<Meeting> list){
+            this.mMeetings = list;
+            notifyDataSetChanged();
+
     }
 }
