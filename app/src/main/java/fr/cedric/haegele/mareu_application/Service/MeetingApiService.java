@@ -31,4 +31,8 @@ public interface MeetingApiService {
     void createMeeting(Meeting meeting);
 
     ArrayList<Meeting> getMeetingsFilteredByDate(Date date);
+
+    List<Meeting> filterByDate(Date filteredDate);
+
+    List<Meeting> filterByRoom(String room);
 }

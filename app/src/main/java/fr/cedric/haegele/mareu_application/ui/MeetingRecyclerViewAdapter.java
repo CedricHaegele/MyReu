@@ -60,7 +60,7 @@ public class MeetingRecyclerViewAdapter extends RecyclerView.Adapter<MeetingRecy
 
         public ImageView photo;
         public TextView title, room;
-        public TextClock date;
+
         public TextView mail;
         public ImageView delete;
 
@@ -71,7 +71,7 @@ public class MeetingRecyclerViewAdapter extends RecyclerView.Adapter<MeetingRecy
             photo = itemView.findViewById(R.id.photo);
             title = itemView.findViewById(R.id.title);
             room = itemView.findViewById(R.id.room);
-            date = itemView.findViewById(R.id.date);
+
             mail = itemView.findViewById(R.id.mail);
             delete = itemView.findViewById(R.id.delete);
 

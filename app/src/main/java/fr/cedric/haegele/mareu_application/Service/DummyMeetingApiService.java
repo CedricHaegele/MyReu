@@ -15,8 +15,7 @@ public class DummyMeetingApiService implements MeetingApiService {
 
     private final List<Meeting> meetings = DummyMeetingGenerator.generateMeetings();
 
-
-    /**
+        /**
      * {@inheritDoc}
      */
     @Override
@@ -44,23 +43,21 @@ public class DummyMeetingApiService implements MeetingApiService {
 
     @Override
     public ArrayList<Meeting> getMeetingsFilteredByDate(Date date) {
-
-        ArrayList<Meeting> result = new ArrayList<>();
-
-        Calendar cal1 = Calendar.getInstance();
-        cal1.setTime(date);
-        for (int i = 0; i < meetings.size(); i++) {
-            Calendar cal2 = Calendar.getInstance();
-            cal2.setTime(meetings.get(i).getDate());
-            boolean sameDay = cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR) &&
-                    cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR);
-            if (sameDay) result.add(meetings.get(i));
-
-        }
-        return result;
-
+        return null;
     }
+
+    @Override
+    public List<Meeting> filterByDate(Date filteredDate) {
+        return null;
+    }
+
+    @Override
+    public List<Meeting> filterByRoom(String room) {
+        return null;
+    }
+
 }
+
 
 
 
