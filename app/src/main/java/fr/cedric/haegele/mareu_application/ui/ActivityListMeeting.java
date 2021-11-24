@@ -1,29 +1,39 @@
 package fr.cedric.haegele.mareu_application.ui;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
+import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
+import butterknife.internal.Utils;
 import fr.cedric.haegele.mareu_application.DI.DI;
 import fr.cedric.haegele.mareu_application.R;
-import fr.cedric.haegele.mareu_application.Service.DummyMeetingApiService;
-import fr.cedric.haegele.mareu_application.Service.DummyMeetingGenerator;
 import fr.cedric.haegele.mareu_application.Service.MeetingApiService;
 import fr.cedric.haegele.mareu_application.model.Meeting;
 
@@ -65,15 +75,61 @@ public class ActivityListMeeting extends AppCompatActivity {
                 Toast.makeText(this, "Sélection par date", Toast.LENGTH_LONG).show();
                 break;
             case R.id.Filtrer_par_salle:
-
-                Toast.makeText(this, "Item 2 selected", Toast.LENGTH_LONG).show();
+                filterByRoom();
+                Toast.makeText(this, "Sélection par salle", Toast.LENGTH_LONG).show();
                 break;
             case R.id.Réinitiliser:
 
-                Toast.makeText(this, "Item 3 selected", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Réinitialiser", Toast.LENGTH_LONG).show();
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void filterByRoom() {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(ActivityListMeeting.this);
+        alertDialog.setTitle("Salles de réunions");
+        String items[] = {"New York", "Berlin", "Yaoundé", "Paris", "Rome", "Madrid", "Rio", "Vienne", "Quebec", "Dublin",};
+        alertDialog.setItems(items, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch(which) {
+                    case 0:
+                        Toast.makeText(ActivityListMeeting.this,"New York",Toast.LENGTH_LONG).show();
+                        break;
+                    case 1:
+                        Toast.makeText(ActivityListMeeting.this,"Berlin",Toast.LENGTH_LONG).show();
+                        break;
+                    case 2:
+                        Toast.makeText(ActivityListMeeting.this,"Yaoundé",Toast.LENGTH_LONG).show();
+                        break;
+                    case 3:
+                        Toast.makeText(ActivityListMeeting.this,"Paris",Toast.LENGTH_LONG).show();
+                        break;
+                    case 4:
+                        Toast.makeText(ActivityListMeeting.this,"Rome",Toast.LENGTH_LONG).show();
+                        break;
+                    case 5:
+                        Toast.makeText(ActivityListMeeting.this,"Madrid",Toast.LENGTH_LONG).show();
+                        break;
+                    case 6:
+                        Toast.makeText(ActivityListMeeting.this,"Rio",Toast.LENGTH_LONG).show();
+                        break;
+                    case 7:
+                        Toast.makeText(ActivityListMeeting.this,"Vienne",Toast.LENGTH_LONG).show();
+                        break;
+                    case 8:
+                        Toast.makeText(ActivityListMeeting.this,"Quebec",Toast.LENGTH_LONG).show();
+                        break;
+                    case 9:
+                        Toast.makeText(ActivityListMeeting.this,"Dublin",Toast.LENGTH_LONG).show();
+                        break;
+                }
+            }
+        });
+        AlertDialog alert = alertDialog.create();
+        alert.setCanceledOnTouchOutside(false);
+        alert.show();
     }
 
     private void filterByDate() {
@@ -93,12 +149,7 @@ public class ActivityListMeeting extends AppCompatActivity {
                 adapter.notifyDataSetChanged();
 
             }
-
-            public void filterByRoom(){
-recyclerView.setAdapter(adapter);
-            }
         };
-
 
 
         DatePickerDialog myDatePicker = new DatePickerDialog(ActivityListMeeting.this, R.style.DialogTheme, date, calendar
@@ -122,6 +173,7 @@ recyclerView.setAdapter(adapter);
     }
 
 }
+
 
 
 
