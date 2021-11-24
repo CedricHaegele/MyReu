@@ -66,6 +66,8 @@ public class ActivityAddMeetings extends AppCompatActivity {
         btnAddMeeting = findViewById(R.id.btn_add_meeting);
         imageTop = findViewById(R.id.imageTop);
 
+        btnAddMeeting.setEnabled(false);
+
 
         meetingApiService = DI.getMeetingApiService();
         getDate();

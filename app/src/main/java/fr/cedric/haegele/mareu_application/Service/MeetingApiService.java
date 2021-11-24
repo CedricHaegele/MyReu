@@ -1,10 +1,12 @@
 package fr.cedric.haegele.mareu_application.Service;
 
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import fr.cedric.haegele.mareu_application.model.Meeting;
+
 
 /**
  * Meeting API client
@@ -32,10 +34,7 @@ public interface MeetingApiService {
 
     ArrayList<Meeting> getMeetingsFilteredByDate(Date date);
 
-
-    static List<Meeting> filterByDate(Date filteredDate) {
-        return null;
-    }
+    List<Meeting> filterByDate(Date dateFilter);
 
     List<Meeting> filterByRoom(String room);
 }

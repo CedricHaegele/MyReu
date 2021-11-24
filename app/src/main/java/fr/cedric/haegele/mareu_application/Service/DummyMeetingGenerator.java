@@ -20,8 +20,8 @@ public class DummyMeetingGenerator {
 
     public static List<Meeting> DUMMY_MEETINGS = Arrays.asList(
 
-            new Meeting("Hello World","New York",new Date(12112021),new Time(1200),"zikced@lamzone.fr"),
-            new Meeting("Hello World","New York",new Date(12112021),new Time(1200),"zikced@lamzone.fr"),
+            new Meeting("Organisation","New York",new Date(22102021),new Time(1100),"Robert@lamzone.fr"+ " " +"sandra@lamzone.fr"),
+            new Meeting("Impots","Vienne",new Date(14012021),new Time(1600),"Herve@lamzone.fr" + " " +"francois@lamzone.fr"),
             new Meeting("Hello World","New York",new Date(12112021),new Time(1200),"zikced@lamzone.fr"),
             new Meeting("Hello World","New York",new Date(12112021),new Time(1200),"zikced@lamzone.fr"),
             new Meeting("Hello World","New York",new Date(12112021),new Time(1200),"zikced@lamzone.fr"),

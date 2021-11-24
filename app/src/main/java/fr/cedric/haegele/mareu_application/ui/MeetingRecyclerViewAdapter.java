@@ -1,5 +1,6 @@
 package fr.cedric.haegele.mareu_application.ui;
 
+import android.content.Context;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +15,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.cedric.haegele.mareu_application.DI.DI;
 import fr.cedric.haegele.mareu_application.R;
+import fr.cedric.haegele.mareu_application.Service.MeetingApiService;
 import fr.cedric.haegele.mareu_application.model.Meeting;
 
 public class MeetingRecyclerViewAdapter extends RecyclerView.Adapter<MeetingRecyclerViewAdapter.ViewHolder> {
@@ -85,10 +88,11 @@ public class MeetingRecyclerViewAdapter extends RecyclerView.Adapter<MeetingRecy
 
         }}
 
-        /** Update mReunion **/
-        void setData(List<Meeting> list){
-            this.mMeetings = list;
-            notifyDataSetChanged();
+    /** Update mReunion **/
+    void setData(List<Meeting> list){
+        this.mMeetings = list;
+        notifyDataSetChanged();
 
     }
 }
+

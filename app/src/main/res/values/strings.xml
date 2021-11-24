@@ -9,7 +9,7 @@
     <string name="Réinitialiser">Réinitialiser</string>
 
 
-
+    <string name="rooms">Salles</string>
     <string name="description">%1$s - %2$s - %3$s</string>
     <string name="Salle_Mexico">Salle Mexico</string>
     <string name="Salle_Venise">Salle Venise</string>
@@ -44,18 +44,5 @@
     <string name="veuillez_s_lectionner_une_salle">Veuillez sélectionner une salle :</string>
     <string name="todo" tools:ignore="DuplicateDefinition">TODO</string>
 
-    <!-- salles -->
-    <string-array name="list_rooms">
-        <item>New York</item>
-        <item>Berlin</item>
-        <item>Yaounde</item>
-        <item>Paris</item>
-        <item>Rome</item>
-        <item>Madrid</item>
-        <item>Rio</item>
-        <item>Vienne</item>
-        <item>Quebec</item>
-        <item>Dublin</item>
-    </string-array>
 
 </resources>
