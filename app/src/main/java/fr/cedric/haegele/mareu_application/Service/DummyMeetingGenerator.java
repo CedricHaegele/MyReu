@@ -22,12 +22,12 @@ public class DummyMeetingGenerator {
 
             new Meeting("Hello World","New York",new Date(12112021),new Time(1200),"zikced@lamzone.fr"),
             new Meeting("Hello World","New York",new Date(12112021),new Time(1200),"zikced@lamzone.fr"),
+            new Meeting("lionel","New York",new Date(12112021),new Time(1200),"zikced@lamzone.fr"),
             new Meeting("Hello World","New York",new Date(12112021),new Time(1200),"zikced@lamzone.fr"),
             new Meeting("Hello World","New York",new Date(12112021),new Time(1200),"zikced@lamzone.fr"),
             new Meeting("Hello World","New York",new Date(12112021),new Time(1200),"zikced@lamzone.fr"),
-            new Meeting("Hello World","New York",new Date(12112021),new Time(1200),"zikced@lamzone.fr"),
-            new Meeting("Hello World","New York",new Date(12112021),new Time(1200),"zikced@lamzone.fr"),
-            new Meeting("Hello World","New York",new Date(12112021),new Time(1200),"zikced@lamzone.fr"),
+            new Meeting("Hello World","New York",new Date(14112021),new Time(1200),"zikced@lamzone.fr"),
+            new Meeting("Hello World","New York",new Date(14112021),new Time(1200),"zikced@lamzone.fr"),
             new Meeting("Hello World","New York",new Date(12112021),new Time(1200),"zikced@lamzone.fr"),
             new Meeting("Hello World","New York",new Date(12112021),new Time(1200),"zikced@lamzone.fr")
 

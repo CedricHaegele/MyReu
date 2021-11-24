@@ -32,10 +32,7 @@ public interface MeetingApiService {
 
     ArrayList<Meeting> getMeetingsFilteredByDate(Date date);
 
-
-    static List<Meeting> filterByDate(Date filteredDate) {
-        return null;
-    }
+    List<Meeting> filterByDate(Date dateFilter);
 
     List<Meeting> filterByRoom(String room);
 }

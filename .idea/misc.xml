@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Lionel Mambingo/Documents/projet_Openclassroom/Dev_Android/etudiants/cedric/MyReu/app/src/main/res/menu/menu.xml" value="0.25" />
         <entry key="..\:/Users/cedric/Desktop/MaReu_application_master/app/src/main/res/drawable/circle.xml" value="0.3026041666666667" />
         <entry key="..\:/Users/cedric/Desktop/MaReu_application_master/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.3026041666666667" />
         <entry key="..\:/Users/cedric/Desktop/MaReu_application_master/app/src/main/res/drawable/ic_baseline_add_24_xl.xml" value="0.3026041666666667" />
@@ -23,7 +24,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

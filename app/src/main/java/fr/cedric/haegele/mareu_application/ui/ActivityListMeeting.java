@@ -22,6 +22,8 @@ import java.util.List;
 
 import fr.cedric.haegele.mareu_application.DI.DI;
 import fr.cedric.haegele.mareu_application.R;
+import fr.cedric.haegele.mareu_application.Service.DummyMeetingApiService;
+import fr.cedric.haegele.mareu_application.Service.DummyMeetingGenerator;
 import fr.cedric.haegele.mareu_application.Service.MeetingApiService;
 import fr.cedric.haegele.mareu_application.model.Meeting;
 
@@ -85,8 +87,10 @@ public class ActivityListMeeting extends AppCompatActivity {
                 calendar.set(Calendar.YEAR, year);
                 calendar.set(Calendar.MONTH, monthOfYear);
                 calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                meeting = MeetingApiService.filterByDate(calendar.getTime());
-                adapter.setData(meeting);
+                meeting = apiService.filterByDate(calendar.getTime());
+                adapter = new MeetingRecyclerViewAdapter(meeting);
+                recyclerView.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
 
             }
 
