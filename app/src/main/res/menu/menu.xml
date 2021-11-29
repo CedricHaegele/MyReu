@@ -11,12 +11,15 @@
 
     <item android:id="@+id/Filtrer_par_salle"
         android:title="@string/Filtrer_par_salle"
-        app:showAsAction="never"
+        app:showAsAction="ifRoom|collapseActionView"
+        app:actionViewClass="android.widget.SearchView"
+
         />
 
     <item android:id="@+id/Réinitiliser"
         android:title="@string/Réinitialiser"
         app:showAsAction="never"
         />
+
 
 </menu>

@@ -20,7 +20,7 @@ public class MeetingDetailActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.meeting_detail_activity);
-        Meeting meeting = getIntent().getParcelableExtra("MEETINGS_DATA");
+        Meeting meeting = getIntent().getParcelableExtra("DATA_MEETINGS");
 
         title=findViewById(R.id.titleRecup);
         roomR=findViewById(R.id.roomRecup);
@@ -30,13 +30,11 @@ public class MeetingDetailActivity extends AppCompatActivity {
 
         title.setText(meeting.getTopicMeeting());
         roomR.setText(meeting.getRoomName());
-        DateFormat format = new SimpleDateFormat("dd/MM/yy");
-        String date = format.format(meeting.getDateMeeting());
-        dateR.setText(date);
-        SimpleDateFormat tf = new SimpleDateFormat("HH:mm");
-        String hour = tf.format(meeting.getHourMeeting());
-        hourR.setText(hour);
-        mailsR.setText(meeting.getMails());
+        dateR.setText(meeting.getDateMeeting());
+        hourR.setText(meeting.getHourMeeting());
+
+        mailsR.setText(meeting.getMails().toString()
+                .substring(1, meeting.getMails().toString().length() - 1));
 
     }
 }

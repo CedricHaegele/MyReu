@@ -1,6 +1,7 @@
 package fr.cedric.haegele.mareu_application.Service;
 
 import java.sql.Time;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -34,7 +35,7 @@ public interface MeetingApiService {
 
     ArrayList<Meeting> getMeetingsFilteredByDate(Date date);
 
-    List<Meeting> filterByDate(Date dateFilter);
+    List<Meeting> filterByDate(Date dateFilter) throws ParseException;
 
     List<Meeting> filterByRoom(String room);
 }

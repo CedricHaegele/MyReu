@@ -13,6 +13,9 @@
             android:name=".ui.ActivityAddMeetings"
             android:exported="false" />
         <activity
+            android:name=".ui.MeetingDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.ActivityListMeeting"
             android:exported="true">
             <intent-filter>

@@ -1,16 +1,12 @@
 package fr.cedric.haegele.mareu_application.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.FragmentActivity;
 
-import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -29,11 +25,13 @@ import com.google.android.material.textfield.TextInputEditText;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 
 import fr.cedric.haegele.mareu_application.DI.DI;
 import fr.cedric.haegele.mareu_application.R;
 import fr.cedric.haegele.mareu_application.Service.MeetingApiService;
+import fr.cedric.haegele.mareu_application.model.Meeting;
 
 public class ActivityAddMeetings extends AppCompatActivity {
     TextInputEditText meetingTopic, meetingDate, meetingHour, mailParticipant;
@@ -44,9 +42,8 @@ public class ActivityAddMeetings extends AppCompatActivity {
     Button btnAddMail, btnAddMeeting;
     MeetingApiService meetingApiService;
     DatePickerDialog.OnDateSetListener onDateSetListener;
-    private ArrayList<String> mails = new ArrayList<>();
+    private List<String> mails = new ArrayList<>();
     private Calendar calendar = Calendar.getInstance();
-
 
 
     @Override
@@ -66,7 +63,8 @@ public class ActivityAddMeetings extends AppCompatActivity {
         btnAddMeeting = findViewById(R.id.btn_add_meeting);
         imageTop = findViewById(R.id.imageTop);
 
-        btnAddMeeting.setEnabled(false);
+        btnAddMeeting.setEnabled(true);
+        createMeeting();
 
 
         meetingApiService = DI.getMeetingApiService();
@@ -120,13 +118,12 @@ public class ActivityAddMeetings extends AppCompatActivity {
                 int hour = calendar.get(Calendar.HOUR_OF_DAY);
                 int minute = calendar.get(Calendar.MINUTE);
 
-                TimePickerDialog timePickerDialog = new TimePickerDialog(ActivityAddMeetings.this,R.style.DialogTheme, new TimePickerDialog.OnTimeSetListener() {
+                TimePickerDialog timePickerDialog = new TimePickerDialog(ActivityAddMeetings.this, R.style.DialogTheme, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                         meetingHour.setText(hourOfDay + ":" + minute);
                     }
                 }, hour, minute, true);
-
 
 
                 timePickerDialog.setTitle("Choisissez l'heure");
@@ -136,6 +133,32 @@ public class ActivityAddMeetings extends AppCompatActivity {
 
         });
     }
+
+    private void createMeeting() {
+        btnAddMeeting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Meeting meeting = new Meeting(
+                        meetingTopic.getText().toString(),
+                        meetingRoom.getSelectedItem().toString(),
+                        meetingDate.getEditableText().toString(),
+                        meetingHour.getEditableText().toString(),
+                        mails);
+
+                meetingApiService.createMeeting(meeting);
+                Toast.makeText(ActivityAddMeetings.this.getApplicationContext(), "La réunion a été ajoutée", Toast.LENGTH_LONG).show();
+                finish();
+
+                Intent intent = new Intent(ActivityAddMeetings.this, ActivityListMeeting.class);
+                startActivity(intent);
+
+
+            }
+        });
+
+    }
+
 
     private void getDate() {
 
@@ -161,6 +184,7 @@ public class ActivityAddMeetings extends AppCompatActivity {
 
         meetingDate.setText(sdf.format(calendar.getTime()));
     }
+
     private void getTime() {
 
         TimePickerDialog.OnTimeSetListener time = new TimePickerDialog.OnTimeSetListener() {
@@ -171,6 +195,7 @@ public class ActivityAddMeetings extends AppCompatActivity {
                 updateLabelTime();
 
             }
+
             private void updateLabelTime() {
                 String myFormat = "HH 'hh' mm";
                 SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.FRANCE);

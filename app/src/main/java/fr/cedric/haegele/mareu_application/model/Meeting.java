@@ -3,8 +3,8 @@ package fr.cedric.haegele.mareu_application.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.sql.Time;
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -13,7 +13,36 @@ import java.util.Date;
 
 public class Meeting implements Parcelable {
 
-    public static final Creator<Meeting>CREATOR = new Creator<Meeting>() {
+
+
+    /** Topic Meeting */
+    private String topicMeeting;
+
+    /** Room Name */
+    private String roomName;
+
+    /** Date Meeting */
+    private String dateMeeting;
+
+    private String hourMeeting;
+
+    /** Mails*/
+    private List<String> mails;
+
+    /** drawable */
+    private int drawable;
+    private Date date;
+
+    protected Meeting(Parcel in) {
+        topicMeeting = in.readString();
+        roomName = in.readString();
+        dateMeeting = in.readString();
+        hourMeeting = in.readString();
+        mails = in.createStringArrayList();
+        drawable = in.readInt();
+    }
+
+    public static final Creator<Meeting> CREATOR = new Creator<Meeting>() {
         @Override
         public Meeting createFromParcel(Parcel in) {
             return new Meeting(in);
@@ -25,42 +54,26 @@ public class Meeting implements Parcelable {
         }
     };
 
+    public static void deleteMeeting(Meeting meeting) {
+    }
 
-    /** Topic Meeting */
-    private String topicMeeting;
-
-    /** Room Name */
-    private String roomName;
-
-    /** Date Meeting */
-    private Date dateMeeting;
-
-    private Time hourMeeting;
-
-    /** Mails*/
-    private String mails;
-
-    /** drawable */
-    private int drawable;
-    private Date date;
-
-    public Date getDateMeeting() {
+    public String getDateMeeting() {
         return dateMeeting;
     }
 
-    public void setDateMeeting(Date dateMeeting) {
+    public void setDateMeeting(String dateMeeting) {
         this.dateMeeting = dateMeeting;
     }
 
-    public Time getHourMeeting() {
+    public String getHourMeeting() {
         return hourMeeting;
     }
 
-    public void setHourMeeting(Time hourMeeting) {
+    public void setHourMeeting(String hourMeeting) {
         this.hourMeeting = hourMeeting;
     }
 
-    public void setMails(String mails) {
+    public void setMails(List <String> mails) {
         this.mails = mails;
     }
 
@@ -68,20 +81,14 @@ public class Meeting implements Parcelable {
         this.date = date;
     }
 
-    protected Meeting(Parcel in) {
-        topicMeeting = in.readString();
-        roomName = in.readString();
-        dateMeeting = new Date(in.readLong());
-        hourMeeting = new Time(in.readLong());
-        mails = in.readString();
-        drawable = in.readInt();
-    }
+
     /**
      * Constructor
      * @param topicMeeting
      * @param roomName
-     * @param dateMeeting    */
-    public Meeting(String topicMeeting, String roomName, Date dateMeeting,Time hourMeeting, String mails) {
+     * @param dateMeeting
+     * @param hourMeeting      */
+    public Meeting(String topicMeeting, String roomName, String dateMeeting, String hourMeeting, List <String> mails) {
 
         this.topicMeeting = topicMeeting;
         this.roomName = roomName;
@@ -96,7 +103,7 @@ public class Meeting implements Parcelable {
     }
 
 
-    public String getMails() {
+    public List <String> getMails() {
         return mails;
     }
 
@@ -124,11 +131,9 @@ public class Meeting implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(topicMeeting);
         dest.writeString(roomName);
-        dest.writeString(mails);
-        dest.writeLong(dateMeeting.getTime());
-        dest.writeLong(hourMeeting.getTime());
+        dest.writeString(dateMeeting);
+        dest.writeString(hourMeeting);
+        dest.writeStringList(mails);
         dest.writeInt(drawable);
-
     }
-
 }

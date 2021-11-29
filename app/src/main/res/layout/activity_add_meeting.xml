@@ -216,8 +216,8 @@
         android:layout_marginVertical="60dp"
         android:backgroundTint="@color/blue"
         android:text="@string/ajout_reunion"
+        android:textColor="@color/white"
         app:cornerRadius="20dp"
-        app:icon="@drawable/ic_baseline_add_black_24dp"
         app:layout_constraintBottom_toBottomOf="@+id/scrollView3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

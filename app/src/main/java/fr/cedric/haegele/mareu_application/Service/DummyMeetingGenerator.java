@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -20,16 +21,7 @@ public class DummyMeetingGenerator {
 
     public static List<Meeting> DUMMY_MEETINGS = Arrays.asList(
 
-            new Meeting("Hello World","New York",new Date(12112021),new Time(1200),"zikced@lamzone.fr"),
-            new Meeting("Hello World","New York",new Date(12112021),new Time(1200),"zikced@lamzone.fr"),
-            new Meeting("lionel","New York",new Date(12112021),new Time(1200),"zikced@lamzone.fr"),
-            new Meeting("Hello World","New York",new Date(12112021),new Time(1200),"zikced@lamzone.fr"),
-            new Meeting("Hello World","New York",new Date(12112021),new Time(1200),"zikced@lamzone.fr"),
-            new Meeting("Hello World","New York",new Date(12112021),new Time(1200),"zikced@lamzone.fr"),
-            new Meeting("Hello World","New York",new Date(14112021),new Time(1200),"zikced@lamzone.fr"),
-            new Meeting("Hello World","New York",new Date(14112021),new Time(1200),"zikced@lamzone.fr"),
-            new Meeting("Hello World","New York",new Date(12112021),new Time(1200),"zikced@lamzone.fr"),
-            new Meeting("Hello World","New York",new Date(12112021),new Time(1200),"zikced@lamzone.fr")
+            new Meeting("Hello World","New York","12/11/2021","12:00", Collections.singletonList("zikced@lamzone.fr"))
 
     );
 
