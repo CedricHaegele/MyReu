@@ -27,13 +27,11 @@ import fr.cedric.haegele.mareu_application.Service.MeetingApiService;
 import fr.cedric.haegele.mareu_application.model.Meeting;
 
 
-public class MeetingRecyclerViewAdapter extends RecyclerView.Adapter<MeetingRecyclerViewAdapter.ViewHolder>implements Filterable {
+public class MeetingRecyclerViewAdapter extends RecyclerView.Adapter<MeetingRecyclerViewAdapter.ViewHolder> {
 
     List<Meeting> mMeetings;
-    OnMeetingClickListener onMeetingClickListener;
+    public MeetingApiService apiService = DI.getMeetingApiService();
     List<Meeting>fullListMeeting;
-
-
 
 
     public MeetingRecyclerViewAdapter(List<Meeting> meetings) {
@@ -54,6 +52,15 @@ public class MeetingRecyclerViewAdapter extends RecyclerView.Adapter<MeetingRecy
         Meeting meeting = mMeetings.get(position);
         holder.displayMeeting(mMeetings.get(position));
 
+        //Delete a meeting
+        holder.delete.setOnClickListener(v -> {
+            mMeetings.remove(meeting);
+            apiService.deleteMeeting(meeting);
+            notifyItemRemoved(position);
+            Toast.makeText(v.getContext(), "La réunion " + meeting.getTopicMeeting() + " a été supprimée", Toast.LENGTH_SHORT).show();
+        });
+
+        // Access to Detail
 holder.itemView.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
@@ -74,12 +81,6 @@ holder.itemView.setOnClickListener(new View.OnClickListener() {
     void update(List<Meeting> meetings) {
         this.mMeetings = meetings;
         notifyDataSetChanged();
-    }
-
-
-
-    public interface OnMeetingClickListener {
-        void onMeetingClicked(int position);
     }
 
 
@@ -104,9 +105,6 @@ holder.itemView.setOnClickListener(new View.OnClickListener() {
             delete = itemView.findViewById(R.id.delete);
 
         }
-
-
-
         public void displayMeeting(Meeting meeting) {
             photo.setColorFilter(meeting.getDrawable());
             title.setText(meeting.getTopicMeeting());
@@ -121,50 +119,8 @@ holder.itemView.setOnClickListener(new View.OnClickListener() {
 
     }
 
-
-    /**
-     * Update mReunion
-     **/
-    void setData(List<Meeting> list) {
-        this.mMeetings = list;
-        notifyDataSetChanged();
-
-    }
-    @Override
-    public Filter getFilter() {
-        return filter;
-    }
-
-    private final Filter filter = new Filter() {
-
-
-        @Override
-        protected FilterResults performFiltering(CharSequence charSequence) {
-            List<Meeting> filteredMeetingList = new ArrayList<>();
-            if (charSequence == null || charSequence.length() == 0) {
-                filteredMeetingList.addAll(fullListMeeting);
-            } else {
-                String filterPattern = charSequence.toString().toLowerCase().trim();
-                for(Meeting item : fullListMeeting) {
-                    if (item.getRoomName().toLowerCase().contains(filterPattern)) {
-                        filteredMeetingList.add(item);
-                    }
-                }
-            }
-            FilterResults filterResults = new FilterResults();
-            filterResults.values = filteredMeetingList;
-            return filterResults;
-        }
-
-        @SuppressLint("NotifyDataSetChanged")
-        @Override
-        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-            mMeetings.clear();
-            mMeetings.addAll(((List)filterResults.values));
-            notifyDataSetChanged();
-        }
     };
 
 
-}
+
 

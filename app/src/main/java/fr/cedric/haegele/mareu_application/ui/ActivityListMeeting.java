@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -17,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.ParseException;
@@ -32,11 +34,10 @@ import fr.cedric.haegele.mareu_application.model.Meeting;
 public class ActivityListMeeting extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private MeetingApiService apiService= DI.getMeetingApiService();
+    private MeetingApiService apiService = DI.getMeetingApiService();
     FloatingActionButton createMeetingBtn;
-    List<Meeting> meeting=new ArrayList<>(apiService.getMeetings());
-    MeetingRecyclerViewAdapter adapter=new MeetingRecyclerViewAdapter(meeting);
-    SearchView searchView;
+    List<Meeting> meeting = new ArrayList<>(apiService.getMeetings());
+    MeetingRecyclerViewAdapter adapter = new MeetingRecyclerViewAdapter(meeting);
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,25 +57,9 @@ public class ActivityListMeeting extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu, menu);
-        MenuItem searchItem=menu.findItem(R.id.Filtrer_par_salle);
-        searchView = (SearchView) searchItem.getActionView();
-        setSearchViewListener();
+        MenuItem searchItem = menu.findItem(R.id.Filtrer_par_salle);
 
         return true;
-    }
-
-    public void setSearchViewListener() {
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String s) {
-                return false;
-            }
-            @Override
-            public boolean onQueryTextChange(String s) {
-                adapter.getFilter().filter(s);
-                return false;
-            }
-        });
     }
 
 
@@ -86,7 +71,10 @@ public class ActivityListMeeting extends AppCompatActivity {
                 filterByDate();
                 Toast.makeText(this, "Sélection par date", Toast.LENGTH_LONG).show();
                 break;
-
+            case R.id.Filtrer_par_salle:
+                filterByRoom();
+                Toast.makeText(this, "Sélection par Salle", Toast.LENGTH_LONG).show();
+                break;
             case R.id.Réinitiliser:
                 filterReset();
                 Toast.makeText(this, "Réinitialiser", Toast.LENGTH_LONG).show();
@@ -103,49 +91,27 @@ public class ActivityListMeeting extends AppCompatActivity {
 
 
     private void filterByRoom() {
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(ActivityListMeeting.this);
-        alertDialog.setTitle("Salles de réunions");
-        String items[] = {"New York", "Berlin", "Yaoundé", "Paris", "Rome", "Madrid", "Rio", "Vienne", "Quebec", "Dublin",};
-        alertDialog.setItems(items, new DialogInterface.OnClickListener() {
+        MaterialAlertDialogBuilder materialAlertDialogBuilder = new MaterialAlertDialogBuilder(this);
+        materialAlertDialogBuilder.setTitle("Salles de réunions");
+        String rooms[] = {"New York", "Berlin", "Yaoundé", "Paris", "Rome", "Madrid", "Rio", "Vienne", "Quebec", "Dublin",};
+        materialAlertDialogBuilder.setItems(rooms, new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-                switch (which) {
-                    case 0:
-                        Toast.makeText(ActivityListMeeting.this, "New York", Toast.LENGTH_LONG).show();
-                        break;
-                    case 1:
-                        Toast.makeText(ActivityListMeeting.this, "Berlin", Toast.LENGTH_LONG).show();
-                        break;
-                    case 2:
-                        Toast.makeText(ActivityListMeeting.this, "Yaoundé", Toast.LENGTH_LONG).show();
-                        break;
-                    case 3:
-                        Toast.makeText(ActivityListMeeting.this, "Paris", Toast.LENGTH_LONG).show();
-                        break;
-                    case 4:
-                        Toast.makeText(ActivityListMeeting.this, "Rome", Toast.LENGTH_LONG).show();
-                        break;
-                    case 5:
-                        Toast.makeText(ActivityListMeeting.this, "Madrid", Toast.LENGTH_LONG).show();
-                        break;
-                    case 6:
-                        Toast.makeText(ActivityListMeeting.this, "Rio", Toast.LENGTH_LONG).show();
-                        break;
-                    case 7:
-                        Toast.makeText(ActivityListMeeting.this, "Vienne", Toast.LENGTH_LONG).show();
-                        break;
-                    case 8:
-                        Toast.makeText(ActivityListMeeting.this, "Quebec", Toast.LENGTH_LONG).show();
-                        break;
-                    case 9:
-                        Toast.makeText(ActivityListMeeting.this, "Dublin", Toast.LENGTH_LONG).show();
-                        break;
+            public void onClick(DialogInterface dialog, int i) {
+                for (String room : rooms) {
+                    room = rooms[i];
+                    adapter = new MeetingRecyclerViewAdapter(meeting);
+                    recyclerView.setAdapter(adapter);
+                    meeting.clear();
+                    meeting.addAll(apiService.filterByRoom(room));
+
+                    adapter.notifyDataSetChanged();
+
                 }
+
             }
         });
-        AlertDialog alert = alertDialog.create();
-        alert.setCanceledOnTouchOutside(false);
-        alert.show();
+
+        materialAlertDialogBuilder.show();
     }
 
     private void filterByDate() {
@@ -179,6 +145,7 @@ public class ActivityListMeeting extends AppCompatActivity {
 
     }
 
+
     public void initList() {
         List<Meeting> meetingList = apiService.getMeetings();
         MeetingRecyclerViewAdapter adapter = new MeetingRecyclerViewAdapter(meetingList);
@@ -191,15 +158,6 @@ public class ActivityListMeeting extends AppCompatActivity {
 
     }
 
-    public void onMeetingClicked(int position) {
-        Meeting meeting = apiService.getMeetings().get(position);
-        Intent i = new Intent(this, MeetingDetailActivity.class);
-        Bundle bundle = new Bundle();
-        bundle.putParcelable("DATA_MEETING", meeting);
-        i.putExtras(bundle);
-        startActivity(i);
-
-    }
 }
 
 

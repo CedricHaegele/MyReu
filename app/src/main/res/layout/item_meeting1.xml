@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -38,10 +37,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
+        android:textStyle="italic"
         app:layout_constraintStart_toEndOf="@id/title"
         app:layout_constraintTop_toTopOf="@id/title"
-        tools:text=" Salle de reunion"
-        android:textStyle="italic"/>
+        tools:text=" Salle de reunion" />
 
 
     <TextView
@@ -49,10 +48,12 @@
         android:layout_width="60dp"
         android:layout_height="20dp"
         android:layout_marginTop="16dp"
-        android:text="12\:00"
-        android:textSize="12sp"
-        app:layout_constraintStart_toEndOf="@id/room"
         android:gravity="end"
+        android:text="12\:00"
+        android:textColor="@color/darkGreen"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@id/delete"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="310dp" />
 
@@ -60,12 +61,13 @@
         android:id="@+id/date"
         android:layout_width="0dp"
         android:layout_height="20dp"
-        app:layout_constraintEnd_toStartOf="@+id/delete"
         android:gravity="center"
-         android:textSize="12sp"
         android:text="10/01/21"
-        app:layout_constraintTop_toBottomOf="@id/hour"
-        app:layout_constraintStart_toEndOf="@+id/mail"/>
+        android:textColor="@color/darkGreen"
+        android:textSize="12sp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toStartOf="@+id/delete"
+        app:layout_constraintTop_toBottomOf="@id/hour" />
 
     <TextView
         android:id="@+id/mail"
@@ -80,8 +82,8 @@
 
     <ImageView
         android:id="@+id/delete"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_margin="16dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"

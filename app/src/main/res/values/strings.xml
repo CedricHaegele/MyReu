@@ -20,7 +20,7 @@
     <string name="Salle_Dubai">Salle Dubai</string>
     <string name="Salle_Madrid">Salle Madrid</string>
     <string name="Salle_Quebec">Salle Quebec</string>
-    <string name="Salle_New_York">Salle New_York</string>
+    <string name="Salle_New_York">New_York</string>
     <string name="ajout_reunion">ajout_reunion</string>
     <string name="ajout">Ajout</string>
     <string name="mails">Mails</string>
@@ -43,6 +43,19 @@
     <string name="r_initialisation_filtres">Réinitialisation Filtres</string>
     <string name="veuillez_s_lectionner_une_salle">Veuillez sélectionner une salle :</string>
     <string name="todo" tools:ignore="DuplicateDefinition">TODO</string>
+
+    <string-array name="meeting_room_list">
+        <item>New York</item>
+        <item>Paris</item>
+        <item>Vienne</item>
+        <item>Rio</item>
+        <item>Yaoundé</item>
+        <item>berlin</item>
+        <item>Rome</item>
+        <item>Madrid</item>
+        <item>Londres</item>
+        <item>Dublin</item>
+    </string-array>
 
 
 </resources>

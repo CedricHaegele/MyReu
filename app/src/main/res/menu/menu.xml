@@ -11,8 +11,8 @@
 
     <item android:id="@+id/Filtrer_par_salle"
         android:title="@string/Filtrer_par_salle"
-        app:showAsAction="ifRoom|collapseActionView"
-        app:actionViewClass="android.widget.SearchView"
+        app:showAsAction="never"
+
 
         />
 

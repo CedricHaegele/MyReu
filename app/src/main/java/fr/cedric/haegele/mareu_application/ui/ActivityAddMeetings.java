@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -64,14 +65,17 @@ public class ActivityAddMeetings extends AppCompatActivity {
         imageTop = findViewById(R.id.imageTop);
 
         btnAddMeeting.setEnabled(true);
-        createMeeting();
 
 
         meetingApiService = DI.getMeetingApiService();
         getDate();
         setMailButton();
+        buttonAdd();
+        adapterRoom();
+        defineHour();
+    }
 
-
+        public void adapterRoom(){
         //value to be shown in the spinner
         String str[] = {"", "New York", "Berlin", "Yaoundé", "Paris", "Rome", "Madrid", "Rio", "Vienne", "Quebec", "Dublin",};
 
@@ -103,14 +107,12 @@ public class ActivityAddMeetings extends AppCompatActivity {
                     imageTop.setImageResource(R.drawable.image9);
                 }
             }
-
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
             }
         });
-
+    }
+    public void defineHour() {
         meetingHour.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -133,12 +135,51 @@ public class ActivityAddMeetings extends AppCompatActivity {
 
         });
     }
+    public void buttonAdd(){
+      btnAddMeeting.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+              checkInputs();
+          }
+      });
+    }
+
+        public void checkInputs() {
+        RelativeLayout roomSpinner=findViewById(R.id.relative);
+
+        String textTopicInput = meetingTopic.getText().toString();
+        String relative = roomSpinner.toString();
+        String textDateInput = meetingDate.getText().toString();
+        String textHourInput = meetingHour.getText().toString();
+
+
+        if (textTopicInput.isEmpty()) {
+            Toast.makeText(this, "Merci de renseigner votre sujet de réunion !", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        if (relative.isEmpty()) {
+            Toast.makeText(this, "Merci de choisir une salle !", Toast.LENGTH_LONG).show();
+            return;
+        }
+        if (textDateInput.isEmpty()) {
+            Toast.makeText(this, "Merci de renseigner une date !", Toast.LENGTH_LONG).show();
+            return;
+        }
+        if (textHourInput.isEmpty()) {
+            Toast.makeText(this, "Merci de renseigner une heure !", Toast.LENGTH_LONG).show();
+            return;
+        }
+        if (mails.isEmpty()) {
+            Toast.makeText(this, "Merci de renseigner votre ou vos emails de participant(s) !", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        createMeeting();
+
+    }
 
     private void createMeeting() {
-        btnAddMeeting.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
                 Meeting meeting = new Meeting(
                         meetingTopic.getText().toString(),
                         meetingRoom.getSelectedItem().toString(),
@@ -149,15 +190,10 @@ public class ActivityAddMeetings extends AppCompatActivity {
                 meetingApiService.createMeeting(meeting);
                 Toast.makeText(ActivityAddMeetings.this.getApplicationContext(), "La réunion a été ajoutée", Toast.LENGTH_LONG).show();
                 finish();
-
                 Intent intent = new Intent(ActivityAddMeetings.this, ActivityListMeeting.class);
                 startActivity(intent);
-
-
             }
-        });
 
-    }
 
 
     private void getDate() {
@@ -257,9 +293,9 @@ public class ActivityAddMeetings extends AppCompatActivity {
                 ifMailIsOk(chip);
             }
         });
-    }
+    }}
 
-}
+
 
 
 
