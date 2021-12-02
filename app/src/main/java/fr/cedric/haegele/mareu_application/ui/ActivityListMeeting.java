@@ -35,6 +35,7 @@ public class ActivityListMeeting extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private MeetingApiService apiService = DI.getMeetingApiService();
+    private Configuration config;
     FloatingActionButton createMeetingBtn;
     List<Meeting> meeting = new ArrayList<>(apiService.getMeetings());
     MeetingRecyclerViewAdapter adapter = new MeetingRecyclerViewAdapter(meeting);
@@ -51,6 +52,8 @@ public class ActivityListMeeting extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         initList();
+        config = getResources().getConfiguration();
+        landscape();
     }
 
     @Override
@@ -156,6 +159,14 @@ public class ActivityListMeeting extends AppCompatActivity {
 
         });
 
+    }
+
+    //Landscape Orientation
+    public void landscape() {
+        if (config.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            meeting.clear();
+            apiService.getMeetings().clear();
+        }
     }
 
 }

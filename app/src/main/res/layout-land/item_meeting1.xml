@@ -4,50 +4,94 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="8dp">
+    android:layout_marginBottom="8dp"
+    tools:ignore="MissingDefaultResource">
 
-      <ImageView
+
+    <ImageView
         android:id="@+id/photo"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_margin="16dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_margin="4dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="10dp"
+        android:contentDescription="@string/circle"
         android:src="@drawable/circle"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="@string/circle" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="15dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="4dp"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@id/photo"
         app:layout_constraintTop_toTopOf="@id/photo"
-        tools:text="Reunion A - 14h00 - Peach"
-        android:textStyle="bold"/>
+        tools:text="Reunion A  - " />
 
     <TextView
-        android:id="@+id/mails"
+        android:id="@+id/room"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:textSize="15dp"
+        android:layout_marginStart="8dp"
+        android:textStyle="italic"
+        app:layout_constraintStart_toEndOf="@id/title"
+        app:layout_constraintTop_toTopOf="@id/title"
+        tools:text=" Salle de reunion" />
+
+
+    <TextView
+        android:id="@+id/hour"
+        android:layout_width="60dp"
+        android:layout_height="16dp"
+        android:layout_marginTop="10dp"
+        android:gravity="end"
+        android:text="12\:00"
+        android:textColor="@color/darkGreen"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@id/delete"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="310dp" />
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="0dp"
+        android:layout_height="20dp"
+        android:gravity="center"
+        android:text="10/01/21"
+        android:textColor="@color/darkGreen"
+        android:textSize="12sp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toStartOf="@+id/delete"
+        app:layout_constraintTop_toBottomOf="@id/hour" />
+
+    <TextView
+        android:id="@+id/mail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="0dp"
         android:textStyle="italic"
         app:layout_constraintStart_toEndOf="@id/photo"
         app:layout_constraintTop_toBottomOf="@id/title"
-        tools:text="Robertmail@mail.fr" />
+        tools:text="Robert@mail.fr, gerard@lamzone.fr" />
 
     <ImageView
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_margin="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+        android:id="@+id/delete"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_margin="10dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp"
+        android:contentDescription="@string/deletebutton"
         android:src="@drawable/ic_baseline_delete_24"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="@string/deletebutton" />
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+

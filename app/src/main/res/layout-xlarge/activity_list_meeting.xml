@@ -8,66 +8,59 @@
     android:orientation="vertical"
     tools:context=".ui.ActivityListMeeting">
 
+
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayout4"
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:ignore="MissingConstraints">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/blue">
+            android:background="#0066FF">
 
             <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="50dp"
+                android:layout_height="60dp"
                 android:layout_marginStart="3dp"
                 android:layout_marginTop="3dp"
                 android:src="@drawable/ic_baseline_emoji_people_24"
                 app:layout_collapseMode="parallax" />
 
-
             <TextView
                 style="@style/TextAppearance.AppCompat.Title"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="100dp"
+                android:layout_marginStart="58dp"
                 android:textSize="50dp"
-                android:text="@string/myreu"
+                android:text="Ma liste de réunions"
                 android:textColor="@color/white"
                 app:layout_collapseMode="parallax" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="100dp"
-                android:layout_marginTop="50dp"
-                android:textSize="40dp"
-                android:gravity="fill_vertical"
-                android:text="@string/ma_liste_de_r_unions"
-                android:textColor="@color/white"
-                app:layout_collapseMode="parallax" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout4"
-        tools:listitem="@layout/item_meeting1" />
+        android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:id="@+id/recyclerView"
+        tools:listitem="@layout/item_meeting1"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/start_add_meeting"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_margin="20dp"
-        android:contentDescription="@string/addmeeting"
+        android:id="@+id/create_meeting_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:src="@drawable/ic_baseline_add_24"
         app:backgroundTint="@color/blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:tint="@color/white" />
+        app:tint="@color/white"
+        android:contentDescription="@string/addmeeting" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
