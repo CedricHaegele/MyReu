@@ -33,8 +33,6 @@ public interface MeetingApiService {
      */
     void createMeeting(Meeting meeting);
 
-    ArrayList<Meeting> getMeetingsFilteredByDate(Date date);
-
     List<Meeting> filterByDate(Date dateFilter) throws ParseException;
 
     List<Meeting> filterByRoom(String room);

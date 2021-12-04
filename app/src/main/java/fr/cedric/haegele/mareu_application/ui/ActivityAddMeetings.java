@@ -75,7 +75,7 @@ public class ActivityAddMeetings extends AppCompatActivity {
         defineHour();
     }
 
-        public void adapterRoom(){
+    public void adapterRoom(){
         //value to be shown in the spinner
         String str[] = {"", "New York", "Berlin", "Yaoundé", "Paris", "Rome", "Madrid", "Rio", "Vienne", "Quebec", "Dublin",};
 
@@ -136,15 +136,15 @@ public class ActivityAddMeetings extends AppCompatActivity {
         });
     }
     public void buttonAdd(){
-      btnAddMeeting.setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View v) {
-              checkInputs();
-          }
-      });
+        btnAddMeeting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                checkInputs();
+            }
+        });
     }
 
-        public void checkInputs() {
+    public void checkInputs() {
         RelativeLayout roomSpinner=findViewById(R.id.relative);
 
         String textTopicInput = meetingTopic.getText().toString();
@@ -180,19 +180,19 @@ public class ActivityAddMeetings extends AppCompatActivity {
     }
 
     private void createMeeting() {
-                Meeting meeting = new Meeting(
-                        meetingTopic.getText().toString(),
-                        meetingRoom.getSelectedItem().toString(),
-                        meetingDate.getEditableText().toString(),
-                        meetingHour.getEditableText().toString(),
-                        mails);
+        Meeting meeting = new Meeting(
+                meetingTopic.getText().toString(),
+                meetingRoom.getSelectedItem().toString(),
+                meetingDate.getEditableText().toString(),
+                meetingHour.getEditableText().toString(),
+                mails);
 
-                meetingApiService.createMeeting(meeting);
-                Toast.makeText(ActivityAddMeetings.this.getApplicationContext(), "La réunion a été ajoutée", Toast.LENGTH_LONG).show();
-                finish();
-                Intent intent = new Intent(ActivityAddMeetings.this, ActivityListMeeting.class);
-                startActivity(intent);
-            }
+        meetingApiService.createMeeting(meeting);
+        Toast.makeText(ActivityAddMeetings.this.getApplicationContext(), "La réunion a été ajoutée", Toast.LENGTH_LONG).show();
+        finish();
+        Intent intent = new Intent(ActivityAddMeetings.this, ActivityListMeeting.class);
+        startActivity(intent);
+    }
 
 
 
@@ -294,6 +294,8 @@ public class ActivityAddMeetings extends AppCompatActivity {
             }
         });
     }}
+
+
 
 
 
