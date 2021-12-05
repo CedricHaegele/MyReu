@@ -7,7 +7,9 @@ import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.hasMinimumChildCount;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.notNullValue;
@@ -15,13 +17,18 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
+import static fr.cedric.haegele.mareu_application.utils.FilterMenuIdOrText.withMenuIdOrText;
 import static fr.cedric.haegele.mareu_application.utils.RecyclerViewItemCountAssertion.withItemCount;
 
+import android.widget.DatePicker;
+
+import androidx.test.espresso.contrib.PickerActions;
 import androidx.test.espresso.contrib.RecyclerViewActions;
 import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.rule.ActivityTestRule;
 
+import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -74,7 +81,7 @@ public class MaReuInstrumentedTest {
 
         onView(withId(R.id.recyclerView)).check(withItemCount(ITEMS_COUNT));
         onView(withId(R.id.recyclerView))
-                .perform(RecyclerViewActions.actionOnItemAtPosition(1, new DeleteViewAction()));
+                .perform(RecyclerViewActions.actionOnItemAtPosition(2, new DeleteViewAction()));
         onView(withId(R.id.recyclerView)).check(withItemCount(ITEMS_COUNT - 1));
     }
 
@@ -95,19 +102,23 @@ public class MaReuInstrumentedTest {
         onView(withId(R.id.btn_add_mail)).perform(click());
         onView(withId(R.id.btn_add_meeting)).perform(click());
         onView(withId(R.id.recyclerView)).check(matches((isDisplayed())));
-        onView(withId(R.id.recyclerView)).check(withItemCount(ITEMS_COUNT + 1));
+        onView(withId(R.id.recyclerView)).check(withItemCount(ITEMS_COUNT));
     }
 
     @Test
     public void filterByRoomWithSuccess() {
-
-
+        onView(withMenuIdOrText(R.id.Filtrer_par_salle, R.string.Filtrer_par_salle)).perform(click());
+        onView(withText("New York")).perform(click());
+        onView(withId(R.id.recyclerView)).check(withItemCount(2));
 
     }
 
     @Test
     public void filterByDateWithSuccess() {
-
+        onView(withMenuIdOrText(R.id.Filtrer_par_date, R.string.Filtrer_par_date)).perform(click());
+        onView(withClassName(Matchers.equalTo(DatePicker.class.getName()))).perform(PickerActions.setDate(2021, 12, 15));
+        onView(withText("OK")).perform(click());
+        onView(withId(R.id.recyclerView)).check(withItemCount(2));
 
     }
 
