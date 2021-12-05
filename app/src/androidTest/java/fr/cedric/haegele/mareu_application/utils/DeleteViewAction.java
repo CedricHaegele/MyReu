@@ -17,13 +17,12 @@ public class DeleteViewAction implements ViewAction {
 
     @Override
     public String getDescription() {
-        return "Click on specific button";
+        return "Click on button";
     }
 
     @Override
     public void perform(UiController uiController, View view) {
         View button = view.findViewById(R.id.delete);
-        // Maybe check for null
         button.performClick();
     }
 }
