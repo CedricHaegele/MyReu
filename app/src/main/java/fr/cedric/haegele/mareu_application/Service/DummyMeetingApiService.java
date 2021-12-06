@@ -44,10 +44,6 @@ public class DummyMeetingApiService implements MeetingApiService {
     }
 
 
-    public ArrayList<Meeting> getMeetingsFilteredByDate(Date date) {
-        return null;
-    }
-
     @Override
     public List<Meeting> filterByDate(Date dateFilter) throws ParseException {
 

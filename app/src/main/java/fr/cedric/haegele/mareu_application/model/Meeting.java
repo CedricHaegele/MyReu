@@ -54,28 +54,15 @@ public class Meeting implements Parcelable {
         }
     };
 
-    public static void deleteMeeting(Meeting meeting) {
-    }
 
     public String getDateMeeting() {
         return dateMeeting;
-    }
-
-    public void setDateMeeting(String dateMeeting) {
-        this.dateMeeting = dateMeeting;
     }
 
     public String getHourMeeting() {
         return hourMeeting;
     }
 
-    public void setHourMeeting(String hourMeeting) {
-        this.hourMeeting = hourMeeting;
-    }
-
-    public void setMails(List <String> mails) {
-        this.mails = mails;
-    }
 
     public void setDate(Date date) {
         this.date = date;
@@ -135,5 +122,9 @@ public class Meeting implements Parcelable {
         dest.writeString(hourMeeting);
         dest.writeStringList(mails);
         dest.writeInt(drawable);
+    }
+
+    public Date getDate() {
+        return date;
     }
 }

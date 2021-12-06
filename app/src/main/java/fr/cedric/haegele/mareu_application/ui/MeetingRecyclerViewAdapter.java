@@ -61,14 +61,11 @@ public class MeetingRecyclerViewAdapter extends RecyclerView.Adapter<MeetingRecy
         });
 
         // Access to Detail
-holder.itemView.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-        Intent intent = new Intent(v.getContext(), MeetingDetailActivity.class);
-        intent.putExtra("DATA_MEETINGS",meeting);
-        v.getContext().startActivity(intent);
+holder.itemView.setOnClickListener(v -> {
+    Intent intent = new Intent(v.getContext(), MeetingDetailActivity.class);
+    intent.putExtra("DATA_MEETINGS",meeting);
+    v.getContext().startActivity(intent);
 
-    }
 });
 
     }
@@ -76,11 +73,6 @@ holder.itemView.setOnClickListener(new View.OnClickListener() {
     @Override
     public int getItemCount() {
         return mMeetings.size();
-    }
-
-    void update(List<Meeting> meetings) {
-        this.mMeetings = meetings;
-        notifyDataSetChanged();
     }
 
 
@@ -115,7 +107,6 @@ holder.itemView.setOnClickListener(new View.OnClickListener() {
             room.setText(meeting.getRoomName());
 
         }
-
 
     }
 

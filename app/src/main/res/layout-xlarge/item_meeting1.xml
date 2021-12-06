@@ -10,8 +10,8 @@
 
     <ImageView
         android:id="@+id/photo"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_margin="8dp"
         android:layout_marginStart="4dp"
         android:layout_marginTop="10dp"
@@ -85,8 +85,8 @@
 
     <ImageView
         android:id="@+id/delete"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_margin="16dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"

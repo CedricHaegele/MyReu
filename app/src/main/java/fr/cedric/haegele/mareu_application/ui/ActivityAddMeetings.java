@@ -112,26 +112,23 @@ public class ActivityAddMeetings extends AppCompatActivity {
             }
         });
     }
+
     public void defineHour() {
-        meetingHour.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Calendar calendar = Calendar.getInstance();
-                int hour = calendar.get(Calendar.HOUR_OF_DAY);
-                int minute = calendar.get(Calendar.MINUTE);
+        meetingHour.setOnClickListener(v -> {
+            Calendar calendar = Calendar.getInstance();
+            int hour = calendar.get(Calendar.HOUR_OF_DAY);
+            int minute = calendar.get(Calendar.MINUTE);
 
-                TimePickerDialog timePickerDialog = new TimePickerDialog(ActivityAddMeetings.this, R.style.DialogTheme, new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        meetingHour.setText(hourOfDay + ":" + minute);
-                    }
-                }, hour, minute, true);
+            TimePickerDialog timePickerDialog = new TimePickerDialog(ActivityAddMeetings.this, R.style.DialogTheme, new TimePickerDialog.OnTimeSetListener() {
+                @Override
+                public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                    meetingHour.setText(hourOfDay + ":" + minute);
+                }
+            }, hour, minute, true);
 
 
-                timePickerDialog.setTitle("Choisissez l'heure");
-                timePickerDialog.show();
-
-            }
+            timePickerDialog.setTitle("Choisissez l'heure");
+            timePickerDialog.show();
 
         });
     }
@@ -241,14 +238,9 @@ public class ActivityAddMeetings extends AppCompatActivity {
             }
         };
 
-        meetingHour.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                new TimePickerDialog(ActivityAddMeetings.this, R.style.DialogTheme, time,
-                        calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE),
-                        false).show();
-            }
-        });
+        meetingHour.setOnClickListener(view -> new TimePickerDialog(ActivityAddMeetings.this, R.style.DialogTheme, time,
+                calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE),
+                false).show());
 
     }
 
@@ -270,28 +262,25 @@ public class ActivityAddMeetings extends AppCompatActivity {
 
     private void setMailButton() {
 
-        btnAddMail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        btnAddMail.setOnClickListener(view -> {
 
-                final Chip chip = new Chip(ActivityAddMeetings.this);
-                ChipDrawable drawable = ChipDrawable.createFromAttributes(ActivityAddMeetings.this, null,
-                        0, R.style.Widget_MaterialComponents_Chip_Entry);
-                chip.setChipDrawable(drawable);
-                chip.setCheckable(false);
-                chip.setClickable(false);
-                chip.setChipIconResource(R.drawable.ic_baseline_mail_24);
-                chip.setIconStartPadding(3f);
-                chip.setPadding(60, 10, 60, 10);
-                chip.setText(mailParticipant.getText().toString());
+            final Chip chip = new Chip(ActivityAddMeetings.this);
+            ChipDrawable drawable = ChipDrawable.createFromAttributes(ActivityAddMeetings.this, null,
+                    0, R.style.Widget_MaterialComponents_Chip_Entry);
+            chip.setChipDrawable(drawable);
+            chip.setCheckable(false);
+            chip.setClickable(false);
+            chip.setChipIconResource(R.drawable.ic_baseline_mail_24);
+            chip.setIconStartPadding(3f);
+            chip.setPadding(60, 10, 60, 10);
+            chip.setText(mailParticipant.getText().toString());
 //                chip.setOnCloseIconClickListener(view1 -> chipGroup.removeView(chip));
-                chip.setOnCloseIconClickListener(view1 -> {
-                    chipGroup.removeView(chip);
-                    mails.remove(chip.getText().toString());
-                });
+            chip.setOnCloseIconClickListener(view1 -> {
+                chipGroup.removeView(chip);
+                mails.remove(chip.getText().toString());
+            });
 
-                ifMailIsOk(chip);
-            }
+            ifMailIsOk(chip);
         });
     }}
 

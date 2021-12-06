@@ -60,7 +60,6 @@ public class ActivityListMeeting extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu, menu);
-        MenuItem searchItem = menu.findItem(R.id.Filtrer_par_salle);
 
         return true;
     }
@@ -121,23 +120,20 @@ public class ActivityListMeeting extends AppCompatActivity {
         Calendar calendar = Calendar.getInstance();
 
         DatePickerDialog.OnDateSetListener date;
-        date = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+        date = (view, year, monthOfYear, dayOfMonth) -> {
 
-                calendar.set(Calendar.YEAR, year);
-                calendar.set(Calendar.MONTH, monthOfYear);
-                calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                try {
-                    meeting = apiService.filterByDate(calendar.getTime());
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-                adapter = new MeetingRecyclerViewAdapter(meeting);
-                recyclerView.setAdapter(adapter);
-                adapter.notifyDataSetChanged();
-
+            calendar.set(Calendar.YEAR, year);
+            calendar.set(Calendar.MONTH, monthOfYear);
+            calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            try {
+                meeting = apiService.filterByDate(calendar.getTime());
+            } catch (ParseException e) {
+                e.printStackTrace();
             }
+            adapter = new MeetingRecyclerViewAdapter(meeting);
+            recyclerView.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
+
         };
 
 
