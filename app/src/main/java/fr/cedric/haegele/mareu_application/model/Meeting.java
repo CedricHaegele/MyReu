@@ -3,9 +3,7 @@ package fr.cedric.haegele.mareu_application.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.util.Date;
 import java.util.List;
-
 
 /**
  * Model object representing a Meeting
@@ -13,25 +11,64 @@ import java.util.List;
 
 public class Meeting implements Parcelable {
 
-
     /** Topic Meeting */
-    private String topicMeeting;
+    private final String topicMeeting;
 
     /** Room Name */
-    private String roomName;
+    private final String roomName;
 
     /** Date Meeting */
-    private String dateMeeting;
+    private final String dateMeeting;
 
-    private String hourMeeting;
+    /** Hour Meeting */
+    private final String hourMeeting;
 
-    /** Mails*/
-    private List<String> mails;
+    /** Mails' List */
+    private final List<String> mails;
 
-    /** drawable */
+    /** Drawable */
     private int drawable;
-    private Date date;
 
+    /** Constructor ( topicMeeting,roomName, dateMeeting, hourMeeting) */
+    public Meeting(String topicMeeting, String roomName, String dateMeeting, String hourMeeting, List<String> mails) {
+
+        this.topicMeeting = topicMeeting;
+        this.roomName = roomName;
+        this.dateMeeting = dateMeeting;
+        this.hourMeeting = hourMeeting;
+        this.mails = mails;
+    }
+
+    /**
+     * GETTERS
+     */
+    public String getTopicMeeting() {
+        return topicMeeting;
+    }
+
+    public String getRoomName() {
+        return roomName;
+    }
+
+    public String getDateMeeting() {
+        return dateMeeting;
+    }
+
+    public String getHourMeeting() {
+        return hourMeeting;
+    }
+
+    public List<String> getMails() {
+        return mails;
+    }
+
+    public int getDrawable() {
+        return drawable;
+    }
+
+    /**
+     * Parcelable Implementation
+     */
     protected Meeting(Parcel in) {
         topicMeeting = in.readString();
         roomName = in.readString();
@@ -53,61 +90,6 @@ public class Meeting implements Parcelable {
         }
     };
 
-
-    public String getDateMeeting() {
-        return dateMeeting;
-    }
-
-    public String getHourMeeting() {
-        return hourMeeting;
-    }
-
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-
-    /**
-     * Constructor
-     * @param topicMeeting
-     * @param roomName
-     * @param dateMeeting
-     * @param hourMeeting      */
-    public Meeting(String topicMeeting, String roomName, String dateMeeting, String hourMeeting, List <String> mails) {
-
-        this.topicMeeting = topicMeeting;
-        this.roomName = roomName;
-        this.dateMeeting = dateMeeting;
-        this.hourMeeting=hourMeeting;
-        this.mails = mails;
-
-    }
-
-    public String getTopicMeeting() {
-        return topicMeeting;
-    }
-
-
-    public List <String> getMails() {
-        return mails;
-    }
-
-    public String getRoomName() {
-        return roomName;
-    }
-
-
-
-    public int getDrawable() {
-        return drawable;
-    }
-
-    public void setDrawable(int drawable) {
-        this.drawable = drawable;
-    }
-
-
     @Override
     public int describeContents() {
         return 0;
@@ -121,9 +103,5 @@ public class Meeting implements Parcelable {
         dest.writeString(hourMeeting);
         dest.writeStringList(mails);
         dest.writeInt(drawable);
-    }
-
-    public Date getDate() {
-        return date;
     }
 }

@@ -1,5 +1,7 @@
 package fr.cedric.haegele.mareu_application.Service;
 
+import android.annotation.SuppressLint;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -9,41 +11,32 @@ import java.util.List;
 
 import fr.cedric.haegele.mareu_application.model.Meeting;
 
-/**
- * Dummy mock for the Api
- */
+/** Dummy mock for the Api */
 
 public class DummyMeetingApiService implements MeetingApiService {
 
+    /** Return all meetings */
     private final List<Meeting> meetings = DummyMeetingGenerator.generateMeetings();
 
-    /**
-     * {@inheritDoc}
-     */
+    /** Get all meetings */
     @Override
     public List<Meeting> getMeetings() {
         return meetings;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** Delete a meeting */
     @Override
     public void deleteMeeting(Meeting meeting) {
         meetings.remove(meeting);
     }
 
-    /**
-     * {@inheritDoc}
-     *
-     * @param meeting
-     */
+    /** Create a meeting */
     @Override
     public void createMeeting(Meeting meeting) {
         meetings.add(meeting);
     }
 
-
+    /** Filter our meeting list by date */
     @Override
     public List<Meeting> filterByDate(Date dateFilter) throws ParseException {
 
@@ -53,8 +46,6 @@ public class DummyMeetingApiService implements MeetingApiService {
         int month= cal.get(Calendar.MONTH);
         int year= cal.get(Calendar.YEAR);
 
-
-
         ArrayList<Meeting> newMeetings= new ArrayList<>();
 
         for (int i = 0; i < meetings.size(); i++ ) {
@@ -62,7 +53,7 @@ public class DummyMeetingApiService implements MeetingApiService {
             String dateS = meetings.get(i).getDateMeeting();
 
 
-            Date dateD = new SimpleDateFormat("dd/MM/yy").parse(dateS);
+            @SuppressLint("SimpleDateFormat") Date dateD = new SimpleDateFormat("dd/MM/yy").parse(dateS);
             assert dateD != null;
             cal2.setTime(dateD);
             int day2= cal2.get(Calendar.DAY_OF_MONTH);
@@ -76,7 +67,7 @@ public class DummyMeetingApiService implements MeetingApiService {
         return newMeetings;
     }
 
-
+    /** Filter our meeting list by room */
     @Override
     public List<Meeting> filterByRoom(String location) {
         List<Meeting> roomFilter = new ArrayList<>();
@@ -87,7 +78,6 @@ public class DummyMeetingApiService implements MeetingApiService {
         }
         return roomFilter;
     }
-
 }
 
 

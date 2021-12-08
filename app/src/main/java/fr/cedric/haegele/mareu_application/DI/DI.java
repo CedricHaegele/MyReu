@@ -8,23 +8,21 @@ import fr.cedric.haegele.mareu_application.model.Meeting;
 
 
 /**
- * Dependency injector to get instance of services
+ * Singleton : get always an instance of MeetingApiService
  */
 public class DI {
 
     private static final MeetingApiService service = new DummyMeetingApiService();
 
     /**
-     * Get an instance on @{@link MeetingApiService}
-     * @return
+     * Get an instance of MeetingApiService
      */
     public static MeetingApiService getMeetingApiService() {
         return service;
     }
 
     /**
-     * Get always a new instance on @{@link MeetingApiService}. Useful for tests, so we ensure the context is clean.
-     * @return
+     * Useful for tests, so we ensure the context is clean
      */
     public static MeetingApiService getNewInstanceMeetingApiService() {
         return new DummyMeetingApiService();

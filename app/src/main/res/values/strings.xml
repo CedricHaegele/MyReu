@@ -43,19 +43,6 @@
     <string name="r_initialisation_filtres">Réinitialisation Filtres</string>
     <string name="veuillez_s_lectionner_une_salle">Veuillez sélectionner une salle :</string>
     <string name="todo" tools:ignore="DuplicateDefinition">TODO</string>
-
-    <string-array name="meeting_room_list">
-        <item>New York</item>
-        <item>Paris</item>
-        <item>Vienne</item>
-        <item>Rio</item>
-        <item>Yaoundé</item>
-        <item>berlin</item>
-        <item>Rome</item>
-        <item>Madrid</item>
-        <item>Londres</item>
-        <item>Dublin</item>
-    </string-array>
-
+    <string name="hint_resource">\ \</string>
 
 </resources>

@@ -1,17 +1,13 @@
 package fr.cedric.haegele.mareu_application.ui;
 
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.DatePicker;
-import android.widget.SearchView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,38 +29,64 @@ import fr.cedric.haegele.mareu_application.model.Meeting;
 
 public class ActivityListMeeting extends AppCompatActivity {
 
+    /** DATA */
     private RecyclerView recyclerView;
-    private MeetingApiService apiService = DI.getMeetingApiService();
     private Configuration config;
     FloatingActionButton createMeetingBtn;
+    private final MeetingApiService apiService = DI.getMeetingApiService();
     List<Meeting> meeting = new ArrayList<>(apiService.getMeetings());
     MeetingRecyclerViewAdapter adapter = new MeetingRecyclerViewAdapter(meeting);
 
-
+    /** ON CREATE */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_meeting);
 
+        configureRecyclerView();
+        initList();
+
+        /* Orientation Landscape Mode */
+        config = getResources().getConfiguration();
+        landscape();
+    }
+
+    /** Configure RecyclerView */
+    private void configureRecyclerView() {
         recyclerView = findViewById(R.id.recyclerView);
         createMeetingBtn = findViewById(R.id.create_meeting_btn);
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-
-        initList();
-        config = getResources().getConfiguration();
-        landscape();
     }
 
+    /** Init Meeting List */
+    public void initList() {
+        List<Meeting> meetingList = apiService.getMeetings();
+        MeetingRecyclerViewAdapter adapter = new MeetingRecyclerViewAdapter(meetingList);
+        recyclerView.setAdapter(adapter);
+        createMeetingBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(ActivityListMeeting.this, ActivityAddMeetings.class);
+            startActivity(intent);
+        });
+    }
+
+    /** Set Landscape Mode */
+    public void landscape() {
+        if (config.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            meeting.clear();
+            apiService.getMeetings().clear();
+        }
+    }
+
+    /** Create Menu */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu, menu);
-
         return true;
     }
 
-
+    /** Define what is happening when Items are selected */
     @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -85,43 +107,12 @@ public class ActivityListMeeting extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void filterReset() {
-        meeting.clear();
-        meeting.addAll(apiService.getMeetings());
-        adapter.notifyDataSetChanged();
-    }
-
-
-    private void filterByRoom() {
-        MaterialAlertDialogBuilder materialAlertDialogBuilder = new MaterialAlertDialogBuilder(this);
-        materialAlertDialogBuilder.setTitle("Salles de réunions");
-        String rooms[] = {"New York", "Berlin", "Yaoundé", "Paris", "Rome", "Madrid", "Rio", "Vienne", "Quebec", "Dublin",};
-        materialAlertDialogBuilder.setItems(rooms, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int i) {
-                for (String room : rooms) {
-                    room = rooms[i];
-                    adapter = new MeetingRecyclerViewAdapter(meeting);
-                    recyclerView.setAdapter(adapter);
-                    meeting.clear();
-                    meeting.addAll(apiService.filterByRoom(room));
-
-                    adapter.notifyDataSetChanged();
-
-                }
-
-            }
-        });
-
-        materialAlertDialogBuilder.show();
-    }
-
+    /** Filter our meeting list by date */
+    @SuppressLint("NotifyDataSetChanged")
     private void filterByDate() {
         Calendar calendar = Calendar.getInstance();
-
         DatePickerDialog.OnDateSetListener date;
         date = (view, year, monthOfYear, dayOfMonth) -> {
-
             calendar.set(Calendar.YEAR, year);
             calendar.set(Calendar.MONTH, monthOfYear);
             calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
@@ -133,38 +124,39 @@ public class ActivityListMeeting extends AppCompatActivity {
             adapter = new MeetingRecyclerViewAdapter(meeting);
             recyclerView.setAdapter(adapter);
             adapter.notifyDataSetChanged();
-
         };
-
-
         DatePickerDialog myDatePicker = new DatePickerDialog(ActivityListMeeting.this, R.style.DialogTheme, date, calendar
                 .get(Calendar.YEAR), calendar.get(Calendar.MONTH),
                 calendar.get(Calendar.DAY_OF_MONTH));
         myDatePicker.show();
-
     }
 
-
-    public void initList() {
-        List<Meeting> meetingList = apiService.getMeetings();
-        MeetingRecyclerViewAdapter adapter = new MeetingRecyclerViewAdapter(meetingList);
-        recyclerView.setAdapter(adapter);
-        createMeetingBtn.setOnClickListener(v -> {
-            Intent intent = new Intent(ActivityListMeeting.this, ActivityAddMeetings.class);
-            startActivity(intent);
-
+    /** Filter our meeting list by room */
+    @SuppressLint("NotifyDataSetChanged")
+    private void filterByRoom() {
+        MaterialAlertDialogBuilder materialAlertDialogBuilder = new MaterialAlertDialogBuilder(this);
+        materialAlertDialogBuilder.setTitle("Salles de réunions");
+        String[] rooms = {"New York", "Berlin", "Yaoundé", "Paris", "Rome", "Madrid", "Rio", "Vienne", "Quebec", "Dublin",};
+        materialAlertDialogBuilder.setItems(rooms, (dialog, i) -> {
+            for (String room : rooms) {
+                room = rooms[i];
+                adapter = new MeetingRecyclerViewAdapter(meeting);
+                recyclerView.setAdapter(adapter);
+                meeting.clear();
+                meeting.addAll(apiService.filterByRoom(room));
+                adapter.notifyDataSetChanged();
+            }
         });
-
+        materialAlertDialogBuilder.show();
     }
 
-    //Landscape Orientation
-    public void landscape() {
-        if (config.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            meeting.clear();
-            apiService.getMeetings().clear();
-        }
+    /** Reset our meeting list Filter  */
+    @SuppressLint("NotifyDataSetChanged")
+    public void filterReset() {
+        meeting.clear();
+        meeting.addAll(apiService.getMeetings());
+        adapter.notifyDataSetChanged();
     }
-
 }
 
 
