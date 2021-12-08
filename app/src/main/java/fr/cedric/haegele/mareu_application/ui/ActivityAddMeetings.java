@@ -218,32 +218,6 @@ public class ActivityAddMeetings extends AppCompatActivity {
         meetingDate.setText(sdf.format(calendar.getTime()));
     }
 
-    private void getTime() {
-
-        TimePickerDialog.OnTimeSetListener time = new TimePickerDialog.OnTimeSetListener() {
-            @Override
-            public void onTimeSet(TimePicker timePicker, int hour, int minute) {
-                calendar.set(Calendar.HOUR_OF_DAY, hour);
-                calendar.set(Calendar.MINUTE, minute);
-                updateLabelTime();
-
-            }
-
-            private void updateLabelTime() {
-                String myFormat = "HH 'hh' mm";
-                SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.FRANCE);
-
-                meetingHour.setText(sdf.format(calendar.getTime()));
-
-            }
-        };
-
-        meetingHour.setOnClickListener(view -> new TimePickerDialog(ActivityAddMeetings.this, R.style.DialogTheme, time,
-                calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE),
-                false).show());
-
-    }
-
 
     private boolean mailIsOk(CharSequence mailParticipant) {
         return Patterns.EMAIL_ADDRESS.matcher(mailParticipant).matches();

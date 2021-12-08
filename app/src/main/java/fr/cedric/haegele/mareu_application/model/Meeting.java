@@ -14,7 +14,6 @@ import java.util.List;
 public class Meeting implements Parcelable {
 
 
-
     /** Topic Meeting */
     private String topicMeeting;
 

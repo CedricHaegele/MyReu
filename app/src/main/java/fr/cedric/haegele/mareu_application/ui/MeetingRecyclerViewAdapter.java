@@ -31,13 +31,12 @@ public class MeetingRecyclerViewAdapter extends RecyclerView.Adapter<MeetingRecy
 
     List<Meeting> mMeetings;
     public MeetingApiService apiService = DI.getMeetingApiService();
-    List<Meeting>fullListMeeting;
+
 
 
     public MeetingRecyclerViewAdapter(List<Meeting> meetings) {
         this.mMeetings = meetings;
-        fullListMeeting = new ArrayList<>(mMeetings);
-    }
+            }
 
     @NonNull
     @Override
