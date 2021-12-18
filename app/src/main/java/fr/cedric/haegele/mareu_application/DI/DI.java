@@ -8,7 +8,7 @@ import fr.cedric.haegele.mareu_application.model.Meeting;
 
 
 /**
- * Singleton : get always an instance of MeetingApiService
+ * Injection Dependency : get always an instance of MeetingApiService
  */
 public class DI {
 

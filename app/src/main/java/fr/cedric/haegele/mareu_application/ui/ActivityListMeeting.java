@@ -10,6 +10,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -34,8 +35,10 @@ public class ActivityListMeeting extends AppCompatActivity {
     private Configuration config;
     FloatingActionButton createMeetingBtn;
     private final MeetingApiService apiService = DI.getMeetingApiService();
-    List<Meeting> meeting = new ArrayList<>(apiService.getMeetings());
+    List<Meeting> meeting = new ArrayList();
+    List<Meeting> meetingList = apiService.getMeetings();
     MeetingRecyclerViewAdapter adapter = new MeetingRecyclerViewAdapter(meeting);
+
 
     /** ON CREATE */
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,9 +48,7 @@ public class ActivityListMeeting extends AppCompatActivity {
         configureRecyclerView();
         initList();
 
-        /* Orientation Landscape Mode */
-        config = getResources().getConfiguration();
-        landscape();
+
     }
 
     /** Configure RecyclerView */
@@ -55,28 +56,36 @@ public class ActivityListMeeting extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         createMeetingBtn = findViewById(R.id.create_meeting_btn);
 
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(layoutManager);
     }
 
     /** Init Meeting List */
     public void initList() {
-        List<Meeting> meetingList = apiService.getMeetings();
         MeetingRecyclerViewAdapter adapter = new MeetingRecyclerViewAdapter(meetingList);
         recyclerView.setAdapter(adapter);
+        /* Orientation Landscape Mode */
+        config = getResources().getConfiguration();
+        onConfigurationChanged(config);
         createMeetingBtn.setOnClickListener(v -> {
             Intent intent = new Intent(ActivityListMeeting.this, ActivityAddMeetings.class);
             startActivity(intent);
         });
     }
 
-    /** Set Landscape Mode */
-    public void landscape() {
-        if (config.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            meeting.clear();
-            apiService.getMeetings().clear();
+    @Override
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+
+        // Checks the orientation of the screen
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                 apiService.getMeetings().clear();
+            Toast.makeText(this, "landscape", Toast.LENGTH_SHORT).show();
+        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
+            Toast.makeText(this, "portrait", Toast.LENGTH_SHORT).show();
         }
     }
+
 
     /** Create Menu */
     @Override

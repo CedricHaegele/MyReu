@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -16,6 +17,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.chip.Chip;
@@ -44,6 +46,7 @@ public class ActivityAddMeetings extends AppCompatActivity {
     Spinner meetingRoom;
     ChipGroup chipGroup;
     Button btnAddMail, btnAddMeeting;
+    private Configuration config;
 
     MeetingApiService meetingApiService = DI.getMeetingApiService();
     private final List<String> mails = new ArrayList<>();
@@ -61,6 +64,19 @@ public class ActivityAddMeetings extends AppCompatActivity {
         defineHour();
         setMailButton();
         createMeetingUnderConditions();
+        config = getResources().getConfiguration();
+        onConfigurationChanged(config);
+        }
+
+    @Override
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+
+        if(newConfig.orientation==Configuration.ORIENTATION_LANDSCAPE){
+           Toast.makeText(this, "landscape",Toast.LENGTH_SHORT).show();
+        }else if(newConfig.orientation==Configuration.ORIENTATION_PORTRAIT){
+            Toast.makeText(this,"portrait", Toast.LENGTH_SHORT).show();
+        }
     }
 
     /** Bind views by Id */
@@ -230,7 +246,7 @@ public class ActivityAddMeetings extends AppCompatActivity {
                 meetingHour.getEditableText().toString(),
                 mails);
 
-        meetingApiService.createMeeting(meeting);
+                meetingApiService.createMeeting(meeting);
         Toast.makeText(ActivityAddMeetings.this.getApplicationContext(), "La réunion a été ajoutée", Toast.LENGTH_LONG).show();
         finish();
         Intent intent = new Intent(ActivityAddMeetings.this, ActivityListMeeting.class);

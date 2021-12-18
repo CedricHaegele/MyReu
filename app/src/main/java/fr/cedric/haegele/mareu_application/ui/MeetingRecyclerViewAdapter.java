@@ -47,8 +47,7 @@ public class MeetingRecyclerViewAdapter extends RecyclerView.Adapter<MeetingRecy
         /* Delete a meeting */
         holder.delete.setOnClickListener(v -> {
             mMeetings.remove(meeting);
-            apiService.deleteMeeting(meeting);
-            notifyItemRemoved(position);
+            notifyDataSetChanged();
             Toast.makeText(v.getContext(), "La réunion " + meeting.getTopicMeeting() + " a été supprimée", Toast.LENGTH_SHORT).show();
         });
 

@@ -40,21 +40,21 @@ public class DummyMeetingApiService implements MeetingApiService {
     @Override
     public List<Meeting> filterByDate(Date dateFilter) throws ParseException {
 
-        Calendar cal= Calendar.getInstance();
-        cal.setTime(dateFilter);
-        int day= cal.get(Calendar.DAY_OF_MONTH);
-        int month= cal.get(Calendar.MONTH);
-        int year= cal.get(Calendar.YEAR);
+        Calendar cal1= Calendar.getInstance();
+        cal1.setTime(dateFilter);
+        int day= cal1.get(Calendar.DAY_OF_MONTH);
+        int month= cal1.get(Calendar.MONTH);
+        int year= cal1.get(Calendar.YEAR);
 
         ArrayList<Meeting> newMeetings= new ArrayList<>();
 
         for (int i = 0; i < meetings.size(); i++ ) {
-            Calendar cal2 = Calendar.getInstance();
             String dateS = meetings.get(i).getDateMeeting();
 
 
             @SuppressLint("SimpleDateFormat") Date dateD = new SimpleDateFormat("dd/MM/yy").parse(dateS);
             assert dateD != null;
+            Calendar cal2 = Calendar.getInstance();
             cal2.setTime(dateD);
             int day2= cal2.get(Calendar.DAY_OF_MONTH);
             int month2= cal2.get(Calendar.MONTH);

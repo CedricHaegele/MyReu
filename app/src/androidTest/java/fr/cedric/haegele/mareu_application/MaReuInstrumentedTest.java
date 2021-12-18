@@ -61,6 +61,7 @@ public class MaReuInstrumentedTest {
         assertThat(mMeeting, notNullValue());
     }
 
+
     /**
      * when we Click on an item, MeetingDetailActivity is launched
      */
